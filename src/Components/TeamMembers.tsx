@@ -32,28 +32,28 @@ const TeamMembers = () => {
       name: "Anjali Sharma",
       researchArea: "Anti-Alzheimer Agents",
       expertise: "Pharmaceutical Chemistry",
-      image: "https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=400&h=400&fit=crop",
+      image: "",
       batch: "2022-2024"
     },
     {
       name: "Deepak Bisht",
       researchArea: "Anti-Inflammatory Agents",
       expertise: "Pharmaceutical Chemistry",
-      image: "https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=400&h=400&fit=crop",
+      image: "",
       batch: "2022-2024"
     },
     {
       name: "Aniket Saini",
       researchArea: "Curcumin Loaded Carbon Dots",
       expertise: "Pharmaceutical Analysis",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=400&h=400&fit=crop",
+      image: "",
       batch: "2022-2024"
     },
     {
       name: "Rabin Debnath",
       researchArea: "Anti-Breast cancer Agents",
       expertise: "Pharmaceutical Chemistry",
-      image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400&h=400&fit=crop",
+      image: "",
       batch: "2022-2024"
     },
     {
