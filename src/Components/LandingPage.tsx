@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Code, Layers, Shield, Star, TrendingUp } from "lucide-react";
+import { Activity, Beaker, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
 import professor from "../assets/Dr. Kalicharan Sharma.png";
 
 const LandingPage: React.FC = () => {
@@ -100,30 +100,34 @@ const LandingPage: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Layers className="w-8 h-8 text-yellow-600" />,
+                icon: <FlaskConical className="w-8 h-8 text-pink-600" />,
                 title: "Medicinal Chemistry",
-                description: "Developing novel drug compounds and therapeutic agents through computational modeling and molecular design."
+                description:
+                  "Designing and synthesizing biologically active molecules to discover new therapeutic agents targeting complex diseases.",
               },
               {
-                icon: <Code className="w-8 h-8 text-green-600" />,
-                title: "Computer Aided Drug Design",
-
-                description: "Utilizing advanced computational methods to simulate molecular interactions and predict chemical properties."
+                icon: <Cpu className="w-8 h-8 text-green-600" />,
+                title: "Computer-Aided Drug Design",
+                description:
+                  "Leveraging molecular modeling, docking, and simulation tools to predict drug-target interactions and optimize lead compounds.",
               },
               {
-                icon: <TrendingUp className="w-8 h-8 text-blue-600" />,
+                icon: <Activity className="w-8 h-8 text-blue-600" />,
                 title: "Biosensors",
-                description: "Creating innovative sensing technologies for rapid detection and monitoring of biological and chemical analytes."
+                description:
+                  "Developing smart biosensing platforms for rapid detection of biomarkers, pathogens, and environmental contaminants.",
               },
               {
-                icon: <Shield className="w-8 h-8 text-purple-600" />,
+                icon: <Beaker className="w-8 h-8 text-purple-600" />,
                 title: "Pharmaceutical Analysis",
-                description: "Ensuring drug quality and safety through advanced analytical techniques and method development."
+                description:
+                  "Employing advanced spectroscopic and chromatographic techniques to ensure the quality, purity, and stability of pharmaceuticals.",
               },
               {
-                icon: <Shield className="w-8 h-8 text-purple-600" />,
+                icon: <TestTube className="w-8 h-8 text-amber-600" />,
                 title: "Synthetic Organic Chemistry",
-                description: "Ensuring drug quality and safety through advanced analytical techniques and method development."
+                description:
+                  "Designing efficient synthetic routes to create complex organic molecules, focusing on medicinally significant scaffolds and analogues.",
               }
             ].map((feature, i) => (
               <div key={i} className="group p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm">
