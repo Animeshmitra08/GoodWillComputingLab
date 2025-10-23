@@ -1,8 +1,5 @@
 import { useState } from "react";
 import {
-  Mail,
-  Linkedin,
-  Github,
   BookOpen,
   Award,
   GraduationCap,
