@@ -33,11 +33,11 @@ const LandingPage: React.FC = () => {
             
             {/* Enhanced Welcome Section */}
             <div className="mb-20 space-y-6">
-              <div className="inline-block">
+              {/* <div className="inline-block">
                 <span className="text-sm md:text-base font-semibold tracking-wider uppercase text-purple-600 mb-4 block">
                   Research Excellence in Pharmaceutical Sciences
                 </span>
-              </div>
+              </div> */}
               
               <h1 className="text-6xl md:text-8xl font-black leading-tight">
                 <span className="block mb-4">
