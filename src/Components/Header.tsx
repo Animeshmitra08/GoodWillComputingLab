@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -38,18 +39,18 @@ const Header: React.FC = () => {
               <h1 className={`text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-500 cursor-pointer ${
                 isScrolled ? 'text-2xl' : 'text-3xl'
               } ${!isScrolled ? 'drop-shadow-lg' : ''}`}>
-                GWCLab
+                KCS Group
               </h1>
             </div>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-1">
-              <a 
-                href="#" 
+              <Link 
+                to="/" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ease-out text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
               >
                 About
-              </a>
+              </Link>
               
               <div className="relative group">
                 <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}>
@@ -61,42 +62,48 @@ const Header: React.FC = () => {
                 </button>
                 <div className="absolute left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
                   <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 w-48 p-2 shadow-gray-900/10">
-                    <a
-                      href="#"
+                    <Link
+                      to="/group/team-members"
                       className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
                     >
                       Team Members
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      to="#"
                       className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
                     >
                       Collaborators
-                    </a>
+                    </Link>
                   </div>
                 </div>
               </div>
               
-              <a 
-                href="#" 
+              <Link 
+                to="#" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
               >
-                Research
-              </a>
-              <a 
-                href="#" 
+                Researches
+              </Link>
+              <Link 
+                to="#" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
               >
                 Publications
-              </a>
-              <a 
-                href="#" 
+              </Link>
+              <Link 
+                to="#" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
               >
-                Open-Source Artifacts
-              </a>
-              
-              {/* Outreach Dropdown */}
+                Patents
+              </Link>
+              <Link 
+                to="#" 
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+              >
+                Current Engagements
+              </Link>
+
+              {/* Outreach Dropdown
               <div className="relative group">
                 <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}>
                   Outreach 
@@ -107,21 +114,21 @@ const Header: React.FC = () => {
                 </button>
                 <div className="absolute left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
                   <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 w-48 p-2 shadow-gray-900/10">
-                    <a
-                      href="#"
+                    <Link
+                      to="#"
                       className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
                     >
                       Events
-                    </a>
-                    <a
-                      href="#"
+                    </Link>
+                    <Link
+                      to="#"
                       className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
                     >
                       Community Work
-                    </a>
+                    </Link>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </nav>
 
             {/* Mobile button */}
@@ -152,12 +159,12 @@ const Header: React.FC = () => {
               ? 'bg-white/95 backdrop-blur-xl border-gray-200/50' 
               : 'bg-white/10 backdrop-blur-xl border-white/20'
           }`}>
-            <a 
-              href="#" 
+            <Link 
+              to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
               About
-            </a>
+            </Link>
             
             {/* Mobile Group Dropdown */}
             <div className="space-y-1">
@@ -173,40 +180,40 @@ const Header: React.FC = () => {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'group' ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="ml-4 space-y-1 pt-1">
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="#" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
                   >
                     Team Members
-                  </a>
-                  <a 
-                    href="#" 
+                  </Link>
+                  <Link 
+                    to="#" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
                   >
                     Collaborators
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>
             
-            <a 
-              href="#" 
+            <Link 
+              to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
               Research
-            </a>
-            <a 
-              href="#" 
+            </Link>
+            <Link 
+              to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
               Publications
-            </a>
-            <a 
-              href="#" 
+            </Link>
+            <Link 
+              to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
               Open-Source Artifacts
-            </a>
+            </Link>
             
             {/* Mobile Outreach Dropdown */}
             <div className="space-y-1">
@@ -222,18 +229,18 @@ const Header: React.FC = () => {
               </button>
               <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'outreach' ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="ml-4 space-y-1 pt-1">
-                  <a 
-                    href="#" 
+                  <Link 
+                    to="#" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
                   >
                     Events
-                  </a>
-                  <a 
-                    href="#" 
+                  </Link>
+                  <Link 
+                    to="#" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
                   >
                     Community Work
-                  </a>
+                  </Link>
                 </div>
               </div>
             </div>

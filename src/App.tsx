@@ -1,17 +1,20 @@
-import './App.css'
-import Header from './Components/Header'
-import LandingPage from './Components/LandingPage'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Header from './Components/Header';
+import LandingPage from './Components/LandingPage';
+import TeamMembers from './Components/TeamMembers';
+import Footer from './Components/Footer';
 
 function App() {
-
   return (
-    <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-        <Header />
-        <LandingPage />
-      </div>
-    </>
-  )
+    <Router>
+      <Header />
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/group/team-members" element={<TeamMembers />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
 }
 
-export default App
+export default App;

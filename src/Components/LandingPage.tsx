@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { ArrowRight, Code, Github, Layers, Linkedin, Mail, Shield, Star, TrendingUp, Twitter, Users, Zap } from "lucide-react";
+import { Code, Layers, Shield, Star, TrendingUp } from "lucide-react";
+import professor from "../assets/Dr. Kalicharan Sharma.png";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,86 +12,114 @@ const LandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Animated Background Elements */}
-      <div className="absolute inset-0 overflow-hidden">
+      <div className="absolute inset-0 ">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute top-40 -left-40 w-80 h-80 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute -bottom-40 left-1/2 w-80 h-80 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
       </div>
 
       {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6">
+      <section className="relative pt-32 pb-25 px-6 overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob"></div>
+          <div className="absolute top-40 right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-2000"></div>
+          <div className="absolute -bottom-8 left-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-20 animate-blob animation-delay-4000"></div>
+        </div>
+
         <div className="max-w-7xl mx-auto text-center">
           <div className={`transition-all duration-1000 transform ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             
-            <h1 className="text-5xl md:text-7xl font-black mb-6 leading-tight">
-              <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-800 bg-clip-text text-transparent">
-                Welcome to the Goodwill Computing Lab
-              </span>
-            </h1>
+            {/* Enhanced Welcome Section */}
+            <div className="mb-20 space-y-6">
+              {/* <div className="inline-block">
+                <span className="text-sm md:text-base font-semibold tracking-wider uppercase text-purple-600 mb-4 block">
+                  Research Excellence in Pharmaceutical Sciences
+                </span>
+              </div> */}
+              
+              <h1 className="text-6xl md:text-8xl font-black leading-tight">
+                <span className="block mb-4">
+                  <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-800 bg-clip-text text-transparent">
+                    Welcome to the
+                  </span>
+                </span>
+                <span className="block relative">
+                  <span className="bg-gradient-to-r from-purple-600 via-indigo-600 to-purple-800 bg-clip-text text-transparent animate-gradient">
+                    KCS Research Group
+                  </span>
+                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+                </span>
+              </h1>
+              
+              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-8 leading-relaxed">
+                Advancing pharmaceutical innovation through cutting-edge computational chemistry and drug design
+              </p>
+            </div>
             
-            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Goodwill Lab's mission is making high performance computing (HPC) and quantum computing systems better and more accessible. 
-            </p>
-
-            <p className="text-xl md:text-2xl text-gray-700 mb-12 max-w-3xl mx-auto leading-relaxed">
-              Goodwill Lab also focuses on preparing next generation of students and educators to take advantage of parallel computing systems to solve problems of societal importance.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* News Section */}
-      <section className="py-16 px-6 bg-gray-50">
-        <div className="max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-black mb-12 text-center bg-gradient-to-r from-gray-900 to-purple-800 bg-clip-text text-transparent">
-            News
-          </h2>
-          
-          <div className="space-y-8">
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-2 h-2 bg-purple-500 rounded-full mt-3"></div>
+            {/* Professor Profile Section */}
+            <div className="flex flex-col md:flex-row items-center justify-center gap-12 max-w-5xl mx-auto pt-12 border-t-2 border-gray-100">
+              {/* Professor Image */}
+              <div className="flex-shrink-0">
+                <div className="relative group">
+                  <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-400 rounded-full blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-300"></div>
+                  <img 
+                    src={professor} 
+                    alt="Dr. Kalicharan Sharma" 
+                    className="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+              </div>
+              
+              {/* Professor Description */}
+              <div className="text-left space-y-5 flex-1">
                 <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">April, 2023</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Dr. Tirthak Patel successfully defended his Ph.D. thesis and graduated with his Ph.D.! He'll be soon on his way to his faculty position at Rice University.
-                  </p>
+                  <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-purple-800 bg-clip-text text-transparent mb-2">
+                    Dr. Kalicharan Sharma
+                  </h2>
+                  <div className="h-1 w-24 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full mb-4"></div>
+                </div>
+                
+                <div className="space-y-3">
+                  <div className="flex items-start gap-3">
+                    <span className="text-purple-600 text-xl mt-1">🎓</span>
+                    <p className="text-lg font-semibold text-gray-800">
+                      Professor, Dept. Pharmaceutical Chemistry and Analysis
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-start gap-3">
+                    <span className="text-indigo-600 text-xl mt-1">🏛️</span>
+                    <p className="text-lg text-gray-700">
+                      I.S.F College of Pharmacy, Moga, Punjab, India
+                    </p>
+                  </div>
+                  
+                  <div className="mt-6 p-5 bg-white rounded-xl shadow-md border border-purple-100 hover:shadow-lg transition-shadow duration-300">
+                    <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center gap-2">
+                      <span className="text-purple-600">🔬</span>
+                      Research Areas
+                    </h3>
+                    <ul className="space-y-2 text-base text-gray-700">
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Computer Aided Drug Design
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
+                        Synthetic Organic Chemistry
+                      </li>
+                      <li className="flex items-center gap-2">
+                        <span className="w-2 h-2 bg-purple-500 rounded-full"></span>
+                        Medicinal Chemistry
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
             </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-2 h-2 bg-indigo-500 rounded-full mt-3"></div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">March 1, 2023</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    William Cutler presented SliQ at a poster session for MathWorks Day @ Northeastern
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-gray-200 hover:shadow-lg transition-shadow duration-300">
-              <div className="flex items-start space-x-4">
-                <div className="flex-shrink-0 w-2 h-2 bg-pink-500 rounded-full mt-3"></div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">February 12, 2023</h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    Daniel Silver presented his poster on Quantum Image Similarity Networks (SliQ) at AAAI-23, coauthored with Tirthak Patel, Aditya Ranjan, Harshitta Gandhi, and William Cutler
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            <div className="text-center mt-8">
-              <button className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-indigo-700 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl">
-                ... see all News
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </button>
-            </div>
+            
           </div>
         </div>
       </section>
@@ -110,34 +139,24 @@ const LandingPage: React.FC = () => {
           <div className="grid md:grid-cols-3 gap-8">
             {[
               {
-                icon: <Zap className="w-8 h-8 text-yellow-600" />,
-                title: "High Performance Computing",
-                description: "Optimizing parallel computing systems for maximum performance and efficiency across diverse applications."
+                icon: <Layers className="w-8 h-8 text-yellow-600" />,
+                title: "Medicinal Chemistry",
+                description: "Developing novel drug compounds and therapeutic agents through computational modeling and molecular design."
               },
               {
-                icon: <Shield className="w-8 h-8 text-green-600" />,
-                title: "Quantum Computing",
-                description: "Advancing quantum computing systems and algorithms to solve complex computational problems."
+                icon: <Code className="w-8 h-8 text-green-600" />,
+                title: "Computation Chemistry",
+                description: "Utilizing advanced computational methods to simulate molecular interactions and predict chemical properties."
               },
               {
-                icon: <Code className="w-8 h-8 text-blue-600" />,
-                title: "System Architecture",
-                description: "Designing innovative computing architectures that bridge classical and quantum systems."
+                icon: <TrendingUp className="w-8 h-8 text-blue-600" />,
+                title: "Biosensors",
+                description: "Creating innovative sensing technologies for rapid detection and monitoring of biological and chemical analytes."
               },
               {
-                icon: <Users className="w-8 h-8 text-purple-600" />,
-                title: "Education & Training",
-                description: "Preparing the next generation of students and educators in parallel computing technologies."
-              },
-              {
-                icon: <TrendingUp className="w-8 h-8 text-pink-600" />,
-                title: "Performance Analysis",
-                description: "Developing tools and methodologies for analyzing and optimizing computing system performance."
-              },
-              {
-                icon: <Layers className="w-8 h-8 text-indigo-600" />,
-                title: "Societal Applications",
-                description: "Applying advanced computing solutions to address problems of significant societal importance."
+                icon: <Shield className="w-8 h-8 text-purple-600" />,
+                title: "Pharmaceutical Analysis",
+                description: "Ensuring drug quality and safety through advanced analytical techniques and method development."
               }
             ].map((feature, i) => (
               <div key={i} className="group p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm">
@@ -183,32 +202,6 @@ const LandingPage: React.FC = () => {
           </div>
         </div>
       </section>
-
-      {/* Footer */}
-      <footer className="py-16 px-6 border-t border-gray-200">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-8 md:mb-0">
-              <h3 className="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
-                Goodwill Computing Lab
-              </h3>
-              <p className="text-gray-600">Making computing more accessible for everyone.</p>
-            </div>
-            
-            <div className="flex space-x-6">
-              {[Github, Twitter, Linkedin, Mail].map((Icon, i) => (
-                <button key={i} className="p-3 bg-gray-100 rounded-2xl text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-all duration-300 transform hover:scale-110">
-                  <Icon size={20} />
-                </button>
-              ))}
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500">
-            <p>&copy; 2024 Goodwill Computing Lab. All rights reserved. Advancing computing for society.</p>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 };
