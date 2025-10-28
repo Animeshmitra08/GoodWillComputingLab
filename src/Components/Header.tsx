@@ -153,7 +153,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Mobile Nav */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 ease-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-100 ease-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
           <nav className={`border-t px-6 py-4 space-y-1 transition-all duration-500 ${
             isScrolled 
               ? 'bg-white/95 backdrop-blur-xl border-gray-200/50' 
@@ -181,7 +181,7 @@ const Header: React.FC = () => {
               <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'group' ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
                 <div className="ml-4 space-y-1 pt-1">
                   <Link 
-                    to="#" 
+                    to="/group/team-members" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
                   >
                     Team Members
