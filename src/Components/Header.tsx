@@ -247,11 +247,18 @@ const Header: React.FC = () => {
               to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
-              Open-Source Artifacts
+              Patents
+            </Link>
+
+            <Link 
+              to="#" 
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+            >
+              Current Engagements
             </Link>
             
             {/* Mobile Outreach Dropdown */}
-            <div className="space-y-1">
+            {/* <div className="space-y-1">
               <button
                 onClick={() => toggleDropdown("outreach")}
                 className={`flex items-center justify-between w-full px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
@@ -278,7 +285,7 @@ const Header: React.FC = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </nav>
         </div>
       </header>
