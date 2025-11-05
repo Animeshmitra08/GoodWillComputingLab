@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +23,8 @@ const Header: React.FC = () => {
   const toggleDropdown = (name: string) => {
     setOpenDropdown(openDropdown === name ? null : name);
   };
+
+  const isActive = (path : string) => location.pathname === path;
 
   return (
     <>
@@ -47,13 +50,21 @@ const Header: React.FC = () => {
             <nav className="hidden md:flex items-center space-x-1">
               <Link 
                 to="/" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ease-out text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ease-out ${
+                isActive("/")
+                  ? "text-indigo-600 bg-indigo-50 font-semibold"
+                  : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+              }`}
               >
                 About
               </Link>
               
               <div className="relative group">
-                <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}>
+                <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                  location.pathname.startsWith("/group")
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                }`}>
                   Group 
                   <ChevronDown 
                     size={16} 
@@ -64,7 +75,11 @@ const Header: React.FC = () => {
                   <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 w-48 p-2 shadow-gray-900/10">
                     <Link
                       to="/group/team-members"
-                      className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
+                      className={`block px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+                      isActive("/group/team-members")
+                        ? "text-indigo-600 bg-indigo-50"
+                        : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                    }`}
                     >
                       Team Members
                     </Link>
@@ -85,8 +100,12 @@ const Header: React.FC = () => {
                 Researches
               </Link>
               <Link 
-                to="#" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+                to="/publications" 
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                isActive("/publications")
+                  ? "text-indigo-600 bg-indigo-50 font-semibold"
+                  : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+              }`}
               >
                 Publications
               </Link>
@@ -161,7 +180,11 @@ const Header: React.FC = () => {
           }`}>
             <Link 
               to="#" 
-              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+              isActive("/")
+                ? "text-indigo-600 bg-indigo-50 font-semibold"
+                : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+            }`}
             >
               About
             </Link>
@@ -170,7 +193,11 @@ const Header: React.FC = () => {
             <div className="space-y-1">
               <button
                 onClick={() => toggleDropdown("group")}
-                className={`flex items-center justify-between w-full px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+                className={`flex items-center justify-between w-full px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+                location.pathname.startsWith("/group")
+                  ? "text-indigo-600 bg-indigo-50"
+                  : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+              }`}
               >
                 Group 
                 <ChevronDown 
@@ -182,7 +209,11 @@ const Header: React.FC = () => {
                 <div className="ml-4 space-y-1 pt-1">
                   <Link 
                     to="/group/team-members" 
-                    className={`block px-4 py-2 rounded-lg transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+                    className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
+                    isActive("/group/team-members")
+                      ? "text-indigo-600 bg-indigo-50"
+                      : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                  }`}
                   >
                     Team Members
                   </Link>
@@ -203,8 +234,12 @@ const Header: React.FC = () => {
               Research
             </Link>
             <Link 
-              to="#" 
-              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+              to="/publications" 
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+              isActive("/publications")
+                ? "text-indigo-600 bg-indigo-50 font-semibold"
+                : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+            }`}
             >
               Publications
             </Link>
