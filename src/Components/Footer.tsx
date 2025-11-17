@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
           {/* Left Section */}
           <div className="mb-8 md:mb-0 text-center md:text-left">
             <h3 className="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
-              KCS Research Group
+              KC Research Group
             </h3>
             <p className="text-gray-600">
               Making computing more accessible for everyone.
