@@ -42,7 +42,7 @@ const Header: React.FC = () => {
               <h1 className={`text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-500 cursor-pointer ${
                 isScrolled ? 'text-2xl' : 'text-3xl'
               } ${!isScrolled ? 'drop-shadow-lg' : ''}`}>
-                KCSRG
+                KC RG
               </h1>
             </div>
 
