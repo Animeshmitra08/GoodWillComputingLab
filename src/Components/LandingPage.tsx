@@ -36,7 +36,7 @@ const LandingPage: React.FC = () => {
                 </span>
                 <span className="block relative">
                   <span className="bg-gradient-to-r from-gray-900 via-indigo-600 to-purple-800 bg-clip-text text-transparent animate-gradient">
-                    KCS Research Group
+                    KC Research Group
                   </span>
                   <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
                 </span>
