@@ -4,6 +4,7 @@ import LandingPage from './Components/LandingPage';
 import TeamMembers from './Components/TeamMembers';
 import Footer from './Components/Footer';
 import Publications from './Components/Publications';
+import GroupLayout from './Components/GroupLayout';
 
 function App() {
   return (
@@ -12,10 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/publications" element={<Publications/>}/>
-        <Route path="/group/team-members" element={<TeamMembers />} />
-        {/* <Route path="/group">
-          <Route />
-        </Route> */}
+        {/* <Route path="/group/team-members" element={<TeamMembers />} /> */}
+        <Route path="/group" element={<GroupLayout />}>
+          <Route path="team-members" element={<TeamMembers />} />
+        </Route>
       </Routes>
       <Footer />
     </Router>

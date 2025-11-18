@@ -44,9 +44,15 @@ const Footer: React.FC = () => {
         {/* Bottom Section */}
         <div className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500">
           <p>
-            &copy; {new Date().getFullYear()} KCS Research Group. All rights
-            reserved. Advancing computing for society.
+            &copy; {new Date().getFullYear()} KC Research Group. All rights reserved.
+            Advancing computing for society.
           </p>
+
+          <div className="flex justify-center items-center mt-4 text-sm text-gray-400">
+            <span className="h-px w-10 bg-gray-300 mr-3"></span>
+            Developed by <span className="ml-1 text-gray-600 font-medium">Animesh Mitra</span>
+            <span className="h-px w-10 bg-gray-300 ml-3"></span>
+          </div>
         </div>
       </div>
     </footer>
