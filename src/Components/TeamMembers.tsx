@@ -72,7 +72,7 @@ const TeamMembers = () => {
 
   const newMembers: TeamMember[] = [
     {
-      name: "Diviyanshi",
+      name: "Divyanshi",
       expertise: "Pharmaceutical Chemistry",
       image: "",
       batch: "2023-2025"

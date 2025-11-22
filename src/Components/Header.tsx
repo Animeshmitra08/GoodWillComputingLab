@@ -56,7 +56,7 @@ const Header: React.FC = () => {
                   : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
               }`}
               >
-                About
+                Home
               </Link>
               
               <div className="relative group">
@@ -113,7 +113,7 @@ const Header: React.FC = () => {
                 to="#" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
               >
-                Patents
+                Achievements
               </Link>
               <Link 
                 to="#" 
@@ -186,7 +186,7 @@ const Header: React.FC = () => {
                 : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
             }`}
             >
-              About
+              Home
             </Link>
             
             {/* Mobile Group Dropdown */}
@@ -247,7 +247,7 @@ const Header: React.FC = () => {
               to="#" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
             >
-              Patents
+              Achievements
             </Link>
 
             <Link 
