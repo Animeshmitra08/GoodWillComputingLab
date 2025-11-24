@@ -5,11 +5,12 @@ import TeamMembers from './Components/TeamMembers';
 import Footer from './Components/Footer';
 import Publications from './Components/Publications';
 import GroupLayout from './Components/GroupLayout';
+import LandingHeader from './Components/LandingHeader';
 
 function App() {
   return (
     <Router>
-      <Header />
+      <LandingHeader />
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/publications" element={<Publications/>}/>
