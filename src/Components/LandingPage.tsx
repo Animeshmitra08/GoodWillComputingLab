@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Activity, Beaker, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
 import professor from "../assets/Dr. Kalicharan Sharma.png";
+import video from "../assets/AdobeStock_65619016.mov";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -12,6 +13,50 @@ const LandingPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero + Professor Section with Animated Background */}
+
+      {/* Welcome Section */}
+            <div className="relative h-[95vh] flex items-center justify-center overflow-hidden">
+
+              {/* 🔹 Background Video */}
+              <video
+                autoPlay
+                loop
+                muted
+                playsInline
+                className="absolute top-0 left-0 w-full h-full object-cover z-0"
+              >
+                <source src={video} type="video/mp4" />
+              </video>
+
+              {/* 🔹 OPTIONAL: Dark overlay (for better text visibility) */}
+              <div className="absolute inset-0 bg-black/60 z-0"></div>
+
+              {/* 🔹 Foreground Text */}
+              <div className="relative z-10 mb-20 space-y-6 justify-center text-center px-4">
+                <h1 className="text-6xl md:text-8xl font-black leading-tight">
+                  <span className="block mb-4">
+                    <span className="
+                    bg-gradient-to-r from-gray-200 to-purple-500
+                    bg-clip-text text-transparent">
+                      Welcome to the
+                    </span>
+                  </span>
+
+                  <span className="block relative">
+                    <span className="
+                    bg-gradient-to-r from-purple-500 to-gray-100
+                    bg-clip-text text-transparent animate-gradient">
+                      KC Research Group
+                    </span>
+
+                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2
+                    w-48 h-1 bg-gradient-to-r from-transparent via-purple-100 to-transparent
+                    rounded-full"></div>
+                  </span>
+                </h1>
+              </div>
+            </div>
+
       <section className="relative pt-32 pb-32 px-6 overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
@@ -20,32 +65,15 @@ const LandingPage: React.FC = () => {
           <div className="absolute -bottom-40 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
         </div>
 
+        
+
         {/* Hero Content */}
         <div className="max-w-7xl mx-auto text-center">
           <div className={`transition-all duration-1000 transform ${
             isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
           }`}>
             
-            {/* Welcome Section */}
-            <div className="mb-20 space-y-6">
-              <h1 className="text-6xl md:text-8xl font-black leading-tight">
-                <span className="block mb-4">
-                  <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-800 bg-clip-text text-transparent">
-                    Welcome to the
-                  </span>
-                </span>
-                <span className="block relative">
-                  <span className="bg-gradient-to-r from-gray-900 via-indigo-600 to-purple-800 bg-clip-text text-transparent animate-gradient">
-                    KC Research Group
-                  </span>
-                  <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-48 h-1 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
-                </span>
-              </h1>
-              
-              <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mt-8 leading-relaxed">
-                Advancing pharmaceutical innovation through cutting-edge computational chemistry and drug design
-              </p>
-            </div>
+            
 
             {/* Professor Profile Section (centered) */}
             <div className="flex flex-col items-center justify-center text-center gap-8 max-w-3xl mx-auto pt-12 border-t-2 border-gray-100">
