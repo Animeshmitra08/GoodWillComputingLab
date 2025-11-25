@@ -99,7 +99,7 @@ const LandingHeader: React.FC = () => {
                       Team Members
                     </Link>
                     <Link
-                      to="#"
+                      to="/group/collaborators"
                       className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
                     >
                       Collaborators
@@ -238,7 +238,7 @@ const LandingHeader: React.FC = () => {
                     Team Members
                   </Link>
                   <Link 
-                    to="#" 
+                    to="/group/collaborators" 
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                       isScrolled || !isLandingPage
                         ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"

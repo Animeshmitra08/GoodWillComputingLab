@@ -1,0 +1,42 @@
+{
+  "academic": [
+    {
+      "name": "Prof. (Dr) Mymoona Akhter",
+      "designation": "Professor and Director of Jamia Hamdard",
+      "email": "mymoonaakhter@gmail.com",
+      "academic_qualification": "M. Pharm (Pharmaceutical Chemistry), PhD"
+    },
+    {
+      "name": "Prof. (Dr) Ramesh K. Goyal",
+      "designation": "Honorable ex Vice-Chancellor & Professor of DPSRU",
+      "email": "goyalrk@gmail.com",
+      "academic_qualification": "B.Sc. (Hon.), M.Sc. (Medical), Ph.D. (Pharmacy)"
+    },
+    {
+      "name": "Prof. (Dr) Ajay Sharma",
+      "designation": "Officiating Director, SPS & Director IQAC",
+      "email": "asharma@dpsru.edu.in",
+      "academic_qualification": "M. Pharm, PhD, Post-Doctorate"
+    },
+    {
+      "name": "Dr. Arya Lakshmi Marisetti",
+      "designation": "Assistant Professor in DPSRU",
+      "email": "maryalakshmi@dpsru.edu.in",
+      "academic_qualification": "Ph.D."
+    },
+    {
+      "name": "Dr. Anoop Kumar",
+      "designation": "Assistant Professor in DPSRU",
+      "email": "anoopdpsru@dpsru.edu.in",
+      "academic_qualification": "M.Pharm, PhD (Pharmacy)"
+    },
+    {
+      "name": "Dr. Omprakash Tanwar",
+      "designation": "Assistant Professor, Department of Pharmacy SGSITS Indore",
+      "email": "otanwar@sgstis.ac.in",
+      "academic_qualification": "PhD"
+    }
+  ],
+
+  "industrial": []
+}

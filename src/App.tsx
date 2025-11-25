@@ -5,6 +5,7 @@ import Footer from './Components/Footer';
 import Publications from './Components/Publications';
 import GroupLayout from './Components/GroupLayout';
 import LandingHeader from './Components/LandingHeader';
+import Collaborators from './Components/Collaborators';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         {/* <Route path="/group/team-members" element={<TeamMembers />} /> */}
         <Route path="/group" element={<GroupLayout />}>
           <Route path="team-members" element={<TeamMembers />} />
+          <Route path="collaborators" element={<Collaborators />} />
         </Route>
       </Routes>
       <Footer />
