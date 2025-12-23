@@ -170,7 +170,7 @@ const TeamMembers = () => {
             {/* Heading */}
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-800 bg-clip-text text-transparent">
-                Our Research Team
+                Our Team Members
               </span>
             </h1>
 
@@ -202,7 +202,7 @@ const TeamMembers = () => {
       <div className="sticky top-20 z-30 bg-white/80 backdrop-blur-md py-4 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <div className="flex bg-gray-100 p-1 rounded-xl">
-            {["current", "2023-2025", "2022-2024"].map((b) => (
+            {["current", "2023-2025"].map((b) => (
               <button
                 key={b}
                 onClick={() => setSelectedBatch(b)}
@@ -233,36 +233,58 @@ const TeamMembers = () => {
         </div>
       </div>
 
-      {/* Grid */}
+      {/* Grid Section */}
       <section className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredMembers.map((member, i) => (
-            <div
-              key={i}
-              onClick={() => setSelectedMember(member)}
-              className="group cursor-pointer bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
-            >
-              <div className="relative aspect-[4/5] overflow-hidden">
-                <MemberImage member={member} className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
-                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                  <p className="text-white font-bold flex items-center gap-2">
-                    View Profile <ChevronRight size={18} />
-                  </p>
+        {filteredMembers.length > 0 ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {filteredMembers.map((member, i) => (
+              <div
+                key={member.name + i}
+                onClick={() => setSelectedMember(member)}
+                className="group cursor-pointer bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
+              >
+                <div className="relative aspect-[4/5] overflow-hidden">
+                  <MemberImage member={member} className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                    <p className="text-white font-bold flex items-center gap-2">
+                      View Profile <ChevronRight size={18} />
+                    </p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{member.name}</h3>
+                  <p className="text-sm text-gray-500 font-medium mt-1">{member.expertise}</p>
+                  {member.researchArea && (
+                    <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
+                      <BookOpen size={14} />
+                      <span className="truncate">{member.researchArea}</span>
+                    </div>
+                  )}
                 </div>
               </div>
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{member.name}</h3>
-                <p className="text-sm text-gray-500 font-medium mt-1">{member.expertise}</p>
-                {member.researchArea && (
-                  <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
-                    <BookOpen size={14} />
-                    <span className="truncate">{member.researchArea}</span>
-                  </div>
-                )}
-              </div>
+            ))}
+          </div>
+        ) : (
+          /* --- FALLBACK COMPONENT --- */
+          <div className="flex flex-col items-center justify-center py-24 px-6 text-center bg-gray-50 rounded-[3rem] border-2 border-dashed border-gray-200">
+            <div className="w-20 h-20 bg-white rounded-3xl shadow-sm flex items-center justify-center mb-6">
+              <Users className="w-10 h-10 text-gray-300" />
             </div>
-          ))}
-        </div>
+            <h3 className="text-2xl font-black text-gray-900 mb-2">No members found</h3>
+            <p className="text-gray-500 max-w-sm mx-auto leading-relaxed">
+              We couldn't find any team members matching <span className="text-purple-600 font-semibold italic">"{searchQuery}"</span> in the <span className="font-semibold">{selectedCategory}</span> category.
+            </p>
+            <button 
+              onClick={() => {
+                setSearchQuery("");
+                setSelectedCategory("all");
+              }}
+              className="mt-8 px-6 py-3 bg-white text-purple-600 font-bold rounded-xl border border-gray-200 hover:border-purple-600 hover:shadow-lg hover:shadow-purple-500/5 transition-all duration-300"
+            >
+              Clear all filters
+            </button>
+          </div>
+        )}
       </section>
     </div>
   );
