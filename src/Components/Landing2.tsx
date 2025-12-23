@@ -5,7 +5,7 @@ import video from "../assets/AdobeStock_65619016.mov";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredWord, setHoveredWord] = useState<number | null>(null);
+  const [hoveredWord, setHoveredWord] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -56,90 +56,82 @@ const LandingPage: React.FC = () => {
         ></div>
 
         {/* Foreground Text with Interactive Elements */}
-        <div className="relative z-10 mb-20 space-y-10 px-4 text-center">
-          {/* Welcome Text */}
-          <div className="space-y-6">
+        <div className="relative z-10 mb-20 px-6 md:px-20 lg:px-32 w-full text-left">
+        {/* Welcome Text */}
+        <div className="space-y-2">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-              <span className="block mb-6">
-                <div className="flex justify-center flex-wrap gap-2">
-                  {welcomeTitle.split(" ").map((word, idx) => (
-                    <span
-                      key={idx}
-                      className="relative inline-block cursor-pointer"
-                      onMouseEnter={() => setHoveredWord(idx)}
-                      onMouseLeave={() => setHoveredWord(null)}
-                    >
-                      {/* Text with dynamic color on hover */}
-                      <span
-                        className="relative inline-block font-black transition-all duration-300"
+            {/* "Welcome to the" - Per Letter Hover */}
+            <div className="flex flex-wrap gap-x-4 mb-2">
+                {welcomeTitle.split(" ").map((word, wIdx) => (
+                <div key={`word-${wIdx}`} className="flex">
+                    {word.split("").map((char, cIdx) => {
+                    const globalIdx = `w1-${wIdx}-${cIdx}`;
+                    return (
+                        <span
+                        key={globalIdx}
+                        className="relative inline-block cursor-default transition-all duration-200 hover:-translate-y-1"
+                        onMouseEnter={() => setHoveredWord(globalIdx)}
+                        onMouseLeave={() => setHoveredWord(null)}
                         style={{
-                          color: hoveredWord === idx ? "#ec4899" : "#ffffff",
-                          textShadow: hoveredWord === idx
-                            ? "0 0 20px rgba(236, 72, 153, 0.6)"
+                            color: hoveredWord === globalIdx ? "#ec4899" : "#ffffff",
+                            textShadow: hoveredWord === globalIdx
+                            ? "0 0 15px rgba(236, 72, 153, 0.8)"
                             : "0 2px 8px rgba(0, 0, 0, 0.3)",
                         }}
-                      >
-                        {word}
-                      </span>
-                    </span>
-                  ))}
+                        >
+                        {char}
+                        </span>
+                    );
+                    })}
                 </div>
-              </span>
+                ))}
+            </div>
 
-              {/* Research Group Text with Color Effect */}
-              <span className="block relative mt-4">
-                <div className="flex justify-center flex-wrap gap-2">
-                  {researchGroup.split(" ").map((word, idx) => (
-                    <span
-                      key={idx}
-                      className="relative inline-block cursor-pointer"
-                      onMouseEnter={() => setHoveredWord(10 + idx)}
-                      onMouseLeave={() => setHoveredWord(null)}
-                    >
-                      {/* Text with dynamic color on hover */}
-                      <span
-                        className="relative inline-block font-black transition-all duration-300"
+            {/* "KC Research Group" - Per Letter Hover */}
+            <div className="flex flex-wrap gap-x-4">
+                {researchGroup.split(" ").map((word, wIdx) => (
+                <div key={`group-${wIdx}`} className="flex">
+                    {word.split("").map((char, cIdx) => {
+                    const globalIdx = `w2-${wIdx}-${cIdx}`;
+                    return (
+                        <span
+                        key={globalIdx}
+                        className="relative inline-block cursor-default transition-all duration-200 hover:-translate-y-1"
+                        onMouseEnter={() => setHoveredWord(globalIdx)}
+                        onMouseLeave={() => setHoveredWord(null)}
                         style={{
-                          color: hoveredWord === 10 + idx ? "#a855f7" : "#ffffff",
-                          textShadow: hoveredWord === 10 + idx
-                            ? "0 0 20px rgba(168, 85, 247, 0.6)"
+                            color: hoveredWord === globalIdx ? "#a855f7" : "#ffffff",
+                            textShadow: hoveredWord === globalIdx
+                            ? "0 0 15px rgba(168, 85, 247, 0.8)"
                             : "0 2px 8px rgba(0, 0, 0, 0.3)",
                         }}
-                      >
-                        {word}
-                      </span>
-                    </span>
-                  ))}
+                        >
+                        {char}
+                        </span>
+                    );
+                    })}
                 </div>
+                ))}
+            </div>
 
-                {/* Animated underline */}
-                <div className="relative mt-6 flex justify-center">
-                  <div className="h-1.5 w-32 bg-gradient-to-r from-transparent via-purple-400 to-transparent rounded-full opacity-60 animate-pulse"></div>
-                </div>
-              </span>
+            {/* Left-aligned Animated underline */}
+            <div className="relative mt-6">
+                <div className="h-1.5 w-32 bg-gradient-to-r from-purple-400 to-transparent rounded-full opacity-60 animate-pulse"></div>
+            </div>
             </h1>
-          </div>
+        </div>
 
-          {/* Subtitle with fade-in */}
-          {/* <div className={`transition-all duration-1000 ${
+        {/* CTA Button - Left Aligned */}
+        <div className={`mt-10 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}>
-            <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed">
-              Pioneering Research in Pharmaceutical Chemistry & Advanced Technologies
-            </p>
-          </div> */}
-
-          {/* CTA Button with hover effect */}
-          <div className={`transition-all duration-1000 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}>
-            <button className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30">
-              <span className="flex items-center gap-2">
+        }`}>
+            <button className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30">
+            <span className="flex items-center gap-2">
                 Explore Our Work
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-              </span>
+            </span>
             </button>
-          </div>
+        </div>
         </div>
 
         {/* Floating Elements */}

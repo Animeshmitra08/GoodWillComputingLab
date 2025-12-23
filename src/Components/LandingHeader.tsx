@@ -69,8 +69,8 @@ const LandingHeader: React.FC = () => {
               >
                 Home
               </Link>
-              
-              <div className="relative group">
+
+              <div className="relative group hover:bg-black">
                 <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 ${
                   location.pathname.startsWith("/group")
                     ? isScrolled || !isLandingPage
