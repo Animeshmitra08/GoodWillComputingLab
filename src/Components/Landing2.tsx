@@ -2,11 +2,14 @@ import { useEffect, useState } from "react";
 import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
 import professor from "../assets/KC Sir web.png";
 import video from "../assets/AdobeStock_65619016.mov";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredWord, setHoveredWord] = useState<string | null>(null);
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
@@ -125,7 +128,9 @@ const LandingPage: React.FC = () => {
         <div className={`mt-10 transition-all duration-1000 delay-300 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
         }`}>
-            <button className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30">
+            <button 
+            onClick={() => { navigate("/publications"); }}
+            className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30 cursor-pointer">
             <span className="flex items-center gap-2">
                 Explore Our Work
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
