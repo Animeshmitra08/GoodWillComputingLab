@@ -109,11 +109,15 @@ const LandingHeader: React.FC = () => {
               </div>
               
               <Link 
-                to="#" 
+                to="/researches" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
-                  isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                  isActive("/researches")
+                    ? isScrolled || !isLandingPage
+                      ? "text-indigo-600 bg-indigo-50 font-semibold"
+                      : "text-white bg-white/20 font-semibold"
+                    : isScrolled || !isLandingPage
+                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                      : "text-white/90 hover:text-white hover:bg-white/20"
                 }`}
               >
                 Researches
@@ -133,11 +137,15 @@ const LandingHeader: React.FC = () => {
                 Publications
               </Link>
               <Link 
-                to="#" 
+                to="/achievements" 
                 className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
-                  isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                  isActive("/achievements")
+                    ? isScrolled || !isLandingPage
+                      ? "text-indigo-600 bg-indigo-50 font-semibold"
+                      : "text-white bg-white/20 font-semibold"
+                    : isScrolled || !isLandingPage
+                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                      : "text-white/90 hover:text-white hover:bg-white/20"
                 }`}
               >
                 Achievements
@@ -252,14 +260,18 @@ const LandingHeader: React.FC = () => {
             </div>
             
             <Link 
-              to="#" 
+              to="/researches" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isScrolled || !isLandingPage
-                  ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                  : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/researches")
+                  ? isScrolled || !isLandingPage
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-white bg-white/20 font-semibold"
+                  : isScrolled || !isLandingPage
+                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                    : "text-white/90 hover:text-white hover:bg-white/20"
               }`}
             >
-              Research
+              Researches
             </Link>
             <Link 
               to="/publications" 
@@ -276,11 +288,15 @@ const LandingHeader: React.FC = () => {
               Publications
             </Link>
             <Link 
-              to="#" 
+              to="/achievements" 
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isScrolled || !isLandingPage
-                  ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                  : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/achievements")
+                  ? isScrolled || !isLandingPage
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-white bg-white/20 font-semibold"
+                  : isScrolled || !isLandingPage
+                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                    : "text-white/90 hover:text-white hover:bg-white/20"
               }`}
             >
               Achievements

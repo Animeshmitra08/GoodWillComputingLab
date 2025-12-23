@@ -1,0 +1,313 @@
+import { useEffect, useState } from "react";
+import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
+import professor from "../assets/KC Sir web.png";
+import video from "../assets/AdobeStock_65619016.mov";
+
+const LandingPage: React.FC = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [hoveredWord, setHoveredWord] = useState<number | null>(null);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+
+  const handleMouseMove = (e: { currentTarget: { getBoundingClientRect: () => any; }; clientX: number; clientY: number; }) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    });
+  };
+
+  // Split text into words for individual animations
+  const welcomeTitle = "Welcome to the";
+  const researchGroup = "KC Research Group";
+
+  return (
+    <div className="min-h-screen bg-white">
+      {/* Welcome Section with Enhanced Interactivity */}
+      <div 
+        className="relative h-screen flex items-center justify-center overflow-hidden"
+        onMouseMove={handleMouseMove}
+      >
+        {/* Background Video */}
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-0 left-0 w-full h-full object-cover z-0"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+
+        {/* Enhanced Dark Overlay with Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-0"></div>
+
+        {/* Animated Glow Effect Following Mouse */}
+        <div
+          className="absolute w-96 h-96 bg-gradient-to-r from-purple-600/30 to-indigo-600/20 rounded-full blur-3xl z-1 pointer-events-none opacity-0 transition-opacity duration-300"
+          style={{
+            left: `${mousePosition.x}px`,
+            top: `${mousePosition.y}px`,
+            transform: "translate(-50%, -50%)",
+          }}
+        ></div>
+
+        {/* Foreground Text with Interactive Elements */}
+        <div className="relative z-10 mb-20 space-y-10 px-4 text-center">
+          {/* Welcome Text */}
+          <div className="space-y-6">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
+              <span className="block mb-6">
+                <div className="flex justify-center flex-wrap gap-2">
+                  {welcomeTitle.split(" ").map((word, idx) => (
+                    <span
+                      key={idx}
+                      className="relative inline-block cursor-pointer"
+                      onMouseEnter={() => setHoveredWord(idx)}
+                      onMouseLeave={() => setHoveredWord(null)}
+                    >
+                      {/* Text with dynamic color on hover */}
+                      <span
+                        className="relative inline-block font-black transition-all duration-300"
+                        style={{
+                          color: hoveredWord === idx ? "#ec4899" : "#ffffff",
+                          textShadow: hoveredWord === idx
+                            ? "0 0 20px rgba(236, 72, 153, 0.6)"
+                            : "0 2px 8px rgba(0, 0, 0, 0.3)",
+                        }}
+                      >
+                        {word}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+              </span>
+
+              {/* Research Group Text with Color Effect */}
+              <span className="block relative mt-4">
+                <div className="flex justify-center flex-wrap gap-2">
+                  {researchGroup.split(" ").map((word, idx) => (
+                    <span
+                      key={idx}
+                      className="relative inline-block cursor-pointer"
+                      onMouseEnter={() => setHoveredWord(10 + idx)}
+                      onMouseLeave={() => setHoveredWord(null)}
+                    >
+                      {/* Text with dynamic color on hover */}
+                      <span
+                        className="relative inline-block font-black transition-all duration-300"
+                        style={{
+                          color: hoveredWord === 10 + idx ? "#a855f7" : "#ffffff",
+                          textShadow: hoveredWord === 10 + idx
+                            ? "0 0 20px rgba(168, 85, 247, 0.6)"
+                            : "0 2px 8px rgba(0, 0, 0, 0.3)",
+                        }}
+                      >
+                        {word}
+                      </span>
+                    </span>
+                  ))}
+                </div>
+
+                {/* Animated underline */}
+                <div className="relative mt-6 flex justify-center">
+                  <div className="h-1.5 w-32 bg-gradient-to-r from-transparent via-purple-400 to-transparent rounded-full opacity-60 animate-pulse"></div>
+                </div>
+              </span>
+            </h1>
+          </div>
+
+          {/* Subtitle with fade-in */}
+          {/* <div className={`transition-all duration-1000 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
+            <p className="text-lg md:text-xl text-gray-100 max-w-2xl mx-auto leading-relaxed">
+              Pioneering Research in Pharmaceutical Chemistry & Advanced Technologies
+            </p>
+          </div> */}
+
+          {/* CTA Button with hover effect */}
+          <div className={`transition-all duration-1000 delay-300 ${
+            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+          }`}>
+            <button className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-110 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30">
+              <span className="flex items-center gap-2">
+                Explore Our Work
+                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
+              </span>
+            </button>
+          </div>
+        </div>
+
+        {/* Floating Elements */}
+        <div className="absolute top-10 left-10 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl animate-float z-1"></div>
+        <div className="absolute bottom-20 right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl animate-float delay-700 z-1"></div>
+      </div>
+
+      {/* Professor Section */}
+      <section className="relative pt-32 pb-32 px-6 overflow-hidden bg-gradient-to-b from-white via-purple-50/30 to-white">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute -bottom-40 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+        </div>
+
+        {/* Hero Content */}
+        <div className="max-w-7xl mx-auto text-center">
+          <div className={`transition-all duration-1000 transform ${
+            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+          }`}>
+            {/* Professor Profile Section */}
+            <div className="flex flex-col items-center justify-center text-center gap-8 max-w-3xl mx-auto">
+              <div className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-400 to-indigo-400 rounded-full blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-300"></div>
+                <img 
+                  src={professor} 
+                  alt="Dr. Kalicharan Sharma" 
+                  className="relative w-56 h-56 md:w-72 md:h-72 rounded-full object-cover shadow-2xl border-4 border-white transform group-hover:scale-105 transition-transform duration-300"
+                />
+              </div>
+
+              <div className="space-y-5">
+                <h2 className="text-4xl font-bold bg-gradient-to-r from-gray-900 to-purple-800 bg-clip-text text-transparent mb-2">
+                  Dr. Kalicharan Sharma
+                </h2>
+                <div className="h-1 w-24 mx-auto bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full mb-4"></div>
+
+                <div className="space-y-4">
+                  <div className="flex items-center justify-center gap-3 hover:translate-x-2 transition-transform duration-300">
+                    <span className="text-purple-600 text-2xl">🎓</span>
+                    <p className="text-lg font-semibold text-gray-800">
+                      Professor, Dept. Pharmaceutical Chemistry and Analysis
+                    </p>
+                  </div>
+
+                  <div className="flex items-center justify-center gap-3 hover:translate-x-2 transition-transform duration-300">
+                    <span className="text-indigo-600 text-2xl">🏛️</span>
+                    <p className="text-lg text-gray-700">
+                      I.S.F College of Pharmacy, Moga, Punjab, India
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section className="pt-15 pb-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-gray-900 to-purple-800 bg-clip-text text-transparent">
+              Research Areas
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Exploring cutting-edge technologies to advance high performance and quantum computing
+            </p>
+          </div>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {[
+              {
+                icon: <FlaskConical className="w-8 h-8 text-pink-600" />,
+                title: "Medicinal Chemistry",
+                description:
+                  "Designing and synthesizing biologically active molecules to discover new therapeutic agents targeting complex diseases.",
+              },
+              {
+                icon: <Cpu className="w-8 h-8 text-green-600" />,
+                title: "Computer-Aided Drug Design",
+                description:
+                  "Leveraging molecular modeling, docking, and simulation tools to predict drug-target interactions and optimize lead compounds.",
+              },
+              {
+                icon: <Activity className="w-8 h-8 text-blue-600" />,
+                title: "Biosensors",
+                description:
+                  "Developing smart biosensing platforms for rapid detection of biomarkers, pathogens, and environmental contaminants.",
+              },
+              {
+                icon: <TestTube className="w-8 h-8 text-amber-600" />,
+                title: "Synthetic Organic Chemistry",
+                description:
+                  "Designing efficient synthetic routes to create complex organic molecules, focusing on medicinally significant scaffolds and analogues.",
+              }
+            ].map((feature, i) => (
+              <div key={i} className="group p-8 bg-white rounded-3xl border border-gray-200 hover:border-gray-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm">
+                <div className="mb-6 p-3 bg-gray-100 rounded-2xl w-fit group-hover:scale-110 transition-transform duration-300 group-hover:bg-gray-200">
+                  {feature.icon}
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-4 group-hover:text-purple-700 transition-colors duration-300">
+                  {feature.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                  {feature.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="bg-gradient-to-br from-purple-600/10 to-indigo-600/10 rounded-3xl border border-gray-200 p-12 md:p-16 shadow-lg hover:shadow-2xl transition-shadow duration-300 backdrop-blur-sm">
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl mb-8 group hover:scale-110 transition-transform duration-300">
+              <Star className="w-8 h-8 text-white" />
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-gray-900 to-purple-800 bg-clip-text text-transparent">
+              Join Our Research
+            </h2>
+            
+            <p className="text-lg text-gray-700 mb-10 max-w-2xl mx-auto leading-relaxed">
+              Collaborate with us to advance the frontiers of pharmaceutical chemistry and molecular innovation. We're always looking for passionate researchers and students.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <button className="px-10 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl text-white font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95">
+                Learn More
+              </button>
+              <button className="px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95">
+                Contact Us
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Custom Animations */}
+      <style>{`
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) rotate(0deg); }
+          50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        
+        @keyframes shimmer {
+          0% { background-position: -1000px 0; }
+          100% { background-position: 1000px 0; }
+        }
+
+        .animate-float {
+          animation: float 6s ease-in-out infinite;
+        }
+
+        .delay-700 {
+          animation-delay: 0.7s;
+        }
+
+        .group:hover {
+          background-color: rgba(255, 255, 255, 0.8);
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default LandingPage;

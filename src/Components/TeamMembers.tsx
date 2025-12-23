@@ -20,24 +20,29 @@ const TeamMembers = () => {
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [isVisible, setIsVisible] = useState(false);
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
+
+  const handleImageError = (memberName: string) => {
+    setFailedImages(prev => new Set(prev).add(memberName));
+  };
 
   const team: TeamMember[] = [
     {
       name: "Arshdeep Singh",
       researchArea: "Anti-Inflammatory Agents",
       expertise: "Pharmaceutical Chemistry",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=400&h=400&fit=crop",
+      image: "/assets/Arshdeep.png",
       batch: "2022-2024"
     },
     {
       name: "Anjali Sharma",
       researchArea: "Anti-Alzheimer Agents",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/anjali-sharma.jpg",
       batch: "2022-2024"
     },
     {
@@ -74,19 +79,19 @@ const TeamMembers = () => {
     {
       name: "Divyanshi",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/Divyanshi.png",
       batch: "2023-2025"
     },
     {
       name: "Yash Kumar Gaur",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/Yash.png",
       batch: "2023-2025"
     },
     {
       name: "Aniket Nandi",
       expertise: "Pharmaceutical Analysis",
-      image: "",
+      image: "/assets/Aniket.png",
       batch: "2023-2025"
     },
     {
@@ -95,12 +100,12 @@ const TeamMembers = () => {
       image: "",
       batch: "2023-2025"
     },
-    {
-      name: "Shreya Kumari",
-      expertise: "Pharmaceutical Chemistry",
-      image: "",
-      batch: "2023-2025"
-    },
+    // {
+    //   name: "Shreya Kumari",
+    //   expertise: "Pharmaceutical Chemistry",
+    //   image: "",
+    //   batch: "2023-2025"
+    // },
     {
       name: "Mukesh Kumar",
       expertise: "Pharmaceutical Analysis",
@@ -110,7 +115,7 @@ const TeamMembers = () => {
     {
       name: "Archana Kumari",
       expertise: "Pharmacognosy",
-      image: "",
+      image: "/assets/Archana.png",
       batch: "2023-2025"
     }
   ];
@@ -125,31 +130,31 @@ const TeamMembers = () => {
     {
       name: "Ganesh Pd Sahu",
       expertise: "Pharmaceutical Analysis",
-      image: "",
+      image: "/assets/Ganesh web.png",
       batch: "current"
     },
     {
       name: "Swagnik Chakroborty",
       expertise: "Pharmaceutical Analysis",
-      image: "",
+      image: "/assets/Swagnik web.png",
       batch: "current"
     },
     {
       name: "Shivam Nag",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/Shivam web.png",
       batch: "current"
     },
     {
       name: "Mohit Sharma",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/Mohit.png",
       batch: "current"
     },
     {
       name: "Mangaldip Ghosh",
       expertise: "Pharmaceutical Chemistry",
-      image: "",
+      image: "/assets/Mangaldip Ghosh.png",
       batch: "current"
     }
   ];
@@ -175,6 +180,35 @@ const TeamMembers = () => {
       (member.researchArea?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
     return matchesBatch && matchesCategory && matchesSearch;
   });
+
+  // Component to render profile image or fallback
+  const MemberImage = ({ member }: { member: TeamMember }) => {
+    const shouldShowFallback = !member.image || failedImages.has(member.name);
+
+    if (shouldShowFallback) {
+      return (
+        <div className="w-full h-full flex items-center justify-center">
+          <div className="text-center">
+            <div className="w-24 h-24 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
+              <svg className="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <p className="text-purple-600 font-bold text-lg">{member.name}</p>
+          </div>
+        </div>
+      );
+    }
+
+    return (
+      <img
+        src={member.image}
+        alt={member.name}
+        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+        onError={() => handleImageError(member.name)}
+      />
+    );
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -276,40 +310,8 @@ const TeamMembers = () => {
                 key={index}
                 className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:border-gray-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm"
               >
-                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-                  {member.image ? (
-                    <img
-                      src={member.image}
-                      alt={member.name}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                      onError={(e) => {
-                        e.currentTarget.style.display = 'none';
-                        e.currentTarget.parentElement!.innerHTML = `
-                          <div class="w-full h-full flex items-center justify-center">
-                            <div class="text-center">
-                              <div class="w-24 h-24 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
-                                <svg class="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                                  <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
-                                </svg>
-                              </div>
-                              <p class="text-purple-600 font-bold text-lg">${member.name}</p>
-                            </div>
-                          </div>
-                        `;
-                      }}
-                    />
-                  ) : (
-                    <div className="w-full h-full flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="w-24 h-24 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
-                          <svg className="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                          </svg>
-                        </div>
-                        <p className="text-purple-600 font-bold text-lg">{member.name}</p>
-                      </div>
-                    </div>
-                  )}
+                <div className="relative h-96 overflow-hidden bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
+                  <MemberImage member={member} />
                 </div>
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors duration-300">

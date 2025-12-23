@@ -39,6 +39,11 @@ const Header: React.FC = () => {
           }`}>
             {/* Logo */}
             <div className="flex-shrink-0 group">
+              {/* <h1 className={`text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-500 cursor-pointer ${
+                isScrolled ? 'text-2xl' : 'text-3xl'
+              } ${!isScrolled ? 'drop-shadow-lg' : ''}`}>
+                KC RG
+              </h1> */}
               <h1 className={`text-2xl font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent hover:scale-105 transition-all duration-500 cursor-pointer ${
                 isScrolled ? 'text-2xl' : 'text-3xl'
               } ${!isScrolled ? 'drop-shadow-lg' : ''}`}>
@@ -94,8 +99,12 @@ const Header: React.FC = () => {
               </div>
               
               <Link 
-                to="#" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+                to="/researches" 
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                isActive("/researches")
+                  ? "text-indigo-600 bg-indigo-50 font-semibold"
+                  : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+              }`}
               >
                 Researches
               </Link>
@@ -228,8 +237,12 @@ const Header: React.FC = () => {
             </div>
             
             <Link 
-              to="#" 
-              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50`}
+              to="/researches" 
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+              isActive("/researches")
+                ? "text-indigo-600 bg-indigo-50 font-semibold"
+                : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+            }`}
             >
               Research
             </Link>

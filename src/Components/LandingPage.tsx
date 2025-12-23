@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { Activity, Beaker, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
-import professor from "../assets/Dr. Kalicharan Sharma.png";
+import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
+import professor from "../assets/KC Sir web.png";
 import video from "../assets/AdobeStock_65619016.mov";
 
 const LandingPage: React.FC = () => {
@@ -15,7 +15,7 @@ const LandingPage: React.FC = () => {
       {/* Hero + Professor Section with Animated Background */}
 
       {/* Welcome Section */}
-            <div className="relative h-[95vh] flex items-center justify-center overflow-hidden">
+            <div className="relative h-screen flex items-center justify-center overflow-hidden">
 
               {/* 🔹 Background Video */}
               <video
@@ -32,26 +32,33 @@ const LandingPage: React.FC = () => {
               <div className="absolute inset-0 bg-black/60 z-0"></div>
 
               {/* 🔹 Foreground Text */}
-              <div className="relative z-10 mb-20 space-y-6 justify-center text-center px-4">
+              <div className="relative z-10 mb-20 space-y-6 px-4">
                 <h1 className="text-6xl md:text-8xl font-black leading-tight">
                   <span className="block mb-4">
-                    <span className="
+                    {/* <span className="
                     bg-gradient-to-r from-gray-200 to-purple-500
                     bg-clip-text text-transparent">
+                      Welcome to the
+                    </span> */}
+                    <span className="text-white">
                       Welcome to the
                     </span>
                   </span>
 
                   <span className="block relative">
-                    <span className="
+                    {/* <span className="
                     bg-gradient-to-r from-purple-500 to-gray-100
                     bg-clip-text text-transparent animate-gradient">
                       KC Research Group
+                    </span> */}
+
+                    <span className="text-white">
+                      KC Research Group
                     </span>
 
-                    <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2
+                    {/* <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2
                     w-48 h-1 bg-gradient-to-r from-transparent via-purple-100 to-transparent
-                    rounded-full"></div>
+                    rounded-full"></div> */}
                   </span>
                 </h1>
               </div>
@@ -145,12 +152,12 @@ const LandingPage: React.FC = () => {
                 description:
                   "Developing smart biosensing platforms for rapid detection of biomarkers, pathogens, and environmental contaminants.",
               },
-              {
-                icon: <Beaker className="w-8 h-8 text-purple-600" />,
-                title: "Pharmaceutical Analysis",
-                description:
-                  "Employing advanced spectroscopic and chromatographic techniques to ensure the quality, purity, and stability of pharmaceuticals.",
-              },
+              // {
+              //   icon: <Beaker className="w-8 h-8 text-purple-600" />,
+              //   title: "Pharmaceutical Analysis",
+              //   description:
+              //     "Employing advanced spectroscopic and chromatographic techniques to ensure the quality, purity, and stability of pharmaceuticals.",
+              // },
               {
                 icon: <TestTube className="w-8 h-8 text-amber-600" />,
                 title: "Synthetic Organic Chemistry",
