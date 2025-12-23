@@ -2,14 +2,14 @@
   "newMembers": [
     {
       "name": "Divyanshi",
-      "expertise": "Pharmaceutical Chemistry",
+      "expertise": "Master's in Pharmaceutical Chemistry",
       "image": "/assets/Divyanshi.png",
       "batch": "2023-2025",
-      "description": "Miss. Divyanshi Master of Pharmacy in Pharmaceutical Chemistry dept. from ISF college of pharmacy, Moga, Punjab.Her expertise in molecular modelling, drug design and heterocyclic synthesis. In Masters, did research on synthesizing of Quinoline and Triazole clubbed VEGFR-2 inhibiotors as Anti-Breast cancer agents."
+      "description": "Miss. Divyanshi Master of Pharmacy in Master's in Pharmaceutical Chemistry dept. from ISF college of pharmacy, Moga, Punjab.Her expertise in molecular modelling, drug design and heterocyclic synthesis. In Masters, did research on synthesizing of Quinoline and Triazole clubbed VEGFR-2 inhibiotors as Anti-Breast cancer agents."
     },
     {
       "name": "Yash Kumar Gaur",
-      "expertise": "Pharmaceutical Chemistry",
+      "expertise": "Master's in Pharmaceutical Chemistry",
       "image": "/assets/Yash.png",
       "batch": "2023-2025",
       "currentRole": "Research Associate at Avammune Lifescience",
@@ -17,19 +17,19 @@
     },
     {
       "name": "Aniket Nandi",
-      "expertise": "Pharmaceutical Analysis",
+      "expertise": "Master's in Pharmaceutical Analysis",
       "image": "/assets/Aniket.png",
       "batch": "2023-2025",
       "description" : "Aniket Nandi has completed his Masters in pharmaceutical analysis and has research experience in biosensors, microfluidics, and computer-aided drug design. His work focuses on biomarker detection using advanced diagnostic platforms such as quantum dots and lateral flow assays, along with computational approaches for drug discovery and understanding disease mechanisms."
     },
     {
       "name": "Mukesh Kumar",
-      "expertise": "Pharmaceutical Analysis",
+      "expertise": "Master's in Pharmaceutical Analysis",
       "image": "",
       "batch": "2023-2025"
     },
     {
-      "name": "Archana Kumari",
+      "name": "Master's in Archana Kumari",
       "expertise": "Pharmacognosy",
       "image": "/assets/Archana.png",
       "batch": "2023-2025",
@@ -39,37 +39,37 @@
   "currentMembers": [
     {
       "name": "Atanu Saha",
-      "expertise": "Pharmaceutical Analysis",
+      "expertise": "Pursuing Pharmaceutical Analysis",
       "image": "",
       "batch": "current"
     },
     {
       "name": "Ganesh Pd Sahu",
-      "expertise": "Pharmaceutical Analysis",
+      "expertise": "Pursuing Pharmaceutical Analysis",
       "image": "/assets/Ganesh web.png",
       "batch": "current"
     },
     {
       "name": "Swagnik Chakraborty",
-      "expertise": "Pharmaceutical Analysis",
+      "expertise": "Pursuing Pharmaceutical Analysis",
       "image": "/assets/Swagnik web.png",
       "batch": "current"
     },
     {
       "name": "Shivam Nag",
-      "expertise": "Pharmaceutical Chemistry",
+      "expertise": "Pursuing Pharmaceutical Chemistry",
       "image": "/assets/Shivam web.png",
       "batch": "current"
     },
     {
       "name": "Mohit Sharma",
-      "expertise": "Pharmaceutical Chemistry",
+      "expertise": "Pursuing Pharmaceutical Chemistry",
       "image": "/assets/Mohit.png",
       "batch": "current"
     },
     {
       "name": "Mangaldip Ghosh",
-      "expertise": "Pharmaceutical Chemistry",
+      "expertise": "Pursuing Pharmaceutical Chemistry",
       "image": "/assets/Mangaldip Ghosh.png",
       "batch": "current"
     }
