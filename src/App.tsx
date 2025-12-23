@@ -9,6 +9,7 @@ import CollaboratorsNetwork from './Components/Collaborators';
 import Research from './Components/Research';
 import Achievements from './Components/Achievements';
 import LandingPage from './Components/Landing2';
+// import TeamPage from './Components/TeamSinglePage';
 // import NewCollab from './Components/NewCollab';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="team-members" element={<TeamMembers />} />
           <Route path="collaborators" element={<CollaboratorsNetwork />} />
         </Route>
+        {/* <Route path="/team/:memberName" element={<TeamPage />} /> */}
         <Route path="/researches" element={<Research />} />
         <Route path="/achievements" element={<Achievements />} />
         <Route path="*" element={<h1>404 Not Found</h1>} />

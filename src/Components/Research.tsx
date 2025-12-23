@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import {
   Microscope,
-  Biohazard as Virus,
   Zap,
   Droplet,
   Search,
   ArrowRight,
 } from "lucide-react";
+import { FaLungsVirus } from "react-icons/fa6";
 
 interface ResearchProject {
   id: string;
@@ -37,7 +37,7 @@ const Research = () => {
     { 
       id: "TB", 
       label: "TB Research", 
-      icon: Virus,
+      icon:  FaLungsVirus,
       color: "from-red-600 to-pink-600",
       bgColor: "bg-red-100"
     },
@@ -71,7 +71,7 @@ const Research = () => {
       title: "Novel Drug Development for TB",
       category: "TB",
       description: "Advanced research on developing novel therapeutic compounds to combat drug-resistant tuberculosis strains.",
-      icon: <Virus className="w-8 h-8" />
+      icon: <FaLungsVirus className="w-8 h-8" />
     },
     {
       id: "tb2",

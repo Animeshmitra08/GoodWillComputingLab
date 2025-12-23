@@ -188,7 +188,7 @@ const LandingHeader: React.FC = () => {
         </div>
 
         {/* Mobile Nav */}
-        <div className={`md:hidden overflow-hidden transition-all duration-100 ease-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-100 ease-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 duration-300'}`}>
           <nav className={`border-t px-6 py-4 space-y-1 transition-all duration-500 ${
             isScrolled || !isLandingPage
               ? 'bg-white/95 backdrop-blur-xl border-gray-200/50' 
@@ -196,6 +196,7 @@ const LandingHeader: React.FC = () => {
           }`}>
             <Link 
               to="/" 
+              onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
                 isActive("/")
                   ? isScrolled || !isLandingPage
@@ -233,6 +234,7 @@ const LandingHeader: React.FC = () => {
                 <div className="ml-4 space-y-1 pt-1">
                   <Link 
                     to="/group/team-members" 
+                    onClick={() => setIsOpen(false)}
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
                       isActive("/group/team-members")
                         ? isScrolled || !isLandingPage
@@ -247,10 +249,15 @@ const LandingHeader: React.FC = () => {
                   </Link>
                   <Link 
                     to="/group/collaborators" 
+                    onClick={() => setIsOpen(false)}
                     className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                      isScrolled || !isLandingPage
-                        ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                        : "text-white/90 hover:text-white hover:bg-white/20"
+                      isActive("/group/collaborators")
+                        ? isScrolled || !isLandingPage
+                          ? "text-indigo-600 bg-indigo-50"
+                          : "text-white bg-white/20"
+                        : isScrolled || !isLandingPage
+                          ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                          : "text-white/90 hover:text-white hover:bg-white/20"
                     }`}
                   >
                     Collaborators
@@ -261,6 +268,7 @@ const LandingHeader: React.FC = () => {
             
             <Link 
               to="/researches" 
+              onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
                 isActive("/researches")
                   ? isScrolled || !isLandingPage
@@ -275,6 +283,7 @@ const LandingHeader: React.FC = () => {
             </Link>
             <Link 
               to="/publications" 
+              onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
                 isActive("/publications")
                   ? isScrolled || !isLandingPage
@@ -289,6 +298,7 @@ const LandingHeader: React.FC = () => {
             </Link>
             <Link 
               to="/achievements" 
+              onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
                 isActive("/achievements")
                   ? isScrolled || !isLandingPage
@@ -304,6 +314,7 @@ const LandingHeader: React.FC = () => {
 
             <Link 
               to="#" 
+              onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
                 isScrolled || !isLandingPage
                   ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"

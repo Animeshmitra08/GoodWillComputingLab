@@ -31,7 +31,7 @@ const LandingPage: React.FC = () => {
     <div className="min-h-screen bg-white">
       {/* Welcome Section with Enhanced Interactivity */}
       <div 
-        className="relative h-screen flex items-center justify-center overflow-hidden"
+        className="relative h-screen 2xl:h-[calc(100vh-35rem)] flex items-center justify-center overflow-hidden"
         onMouseMove={handleMouseMove}
       >
         {/* Background Video */}
@@ -59,7 +59,7 @@ const LandingPage: React.FC = () => {
         ></div>
 
         {/* Foreground Text with Interactive Elements */}
-        <div className="relative z-10 mb-20 px-6 md:px-20 lg:px-32 w-full text-left">
+        <div className="relative z-10 mb-20 px-6 w-full text-left max-w-7xl">
         {/* Welcome Text */}
         <div className="space-y-2">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
@@ -131,7 +131,7 @@ const LandingPage: React.FC = () => {
             <button 
             onClick={() => { navigate("/publications"); }}
             className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30 cursor-pointer">
-            <span className="flex items-center gap-2">
+            <span className="flex items-center gap-2 text-sm md:text-lg">
                 Explore Our Work
                 <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
             </span>

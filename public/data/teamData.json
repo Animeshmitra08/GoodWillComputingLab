@@ -1,0 +1,77 @@
+{
+  "newMembers": [
+    {
+      "name": "Divyanshi",
+      "expertise": "Pharmaceutical Chemistry",
+      "image": "/assets/Divyanshi.png",
+      "batch": "2023-2025",
+      "description": "Miss. Divyanshi Master of Pharmacy in Pharmaceutical Chemistry dept. from ISF college of pharmacy, Moga, Punjab.Her expertise in molecular modelling, drug design and heterocyclic synthesis. In Masters, did research on synthesizing of Quinoline and Triazole clubbed VEGFR-2 inhibiotors as Anti-Breast cancer agents."
+    },
+    {
+      "name": "Yash Kumar Gaur",
+      "expertise": "Pharmaceutical Chemistry",
+      "image": "/assets/Yash.png",
+      "batch": "2023-2025",
+      "currentRole": "Research Associate at Avammune Lifescience",
+      "description": "An aspiring medicinal chemist with a strong foundation as well as hands-on experience in drug design, Molecular Docking and organic reaction. Skilled in Structure-activity relationships, lead optimization and various analytical techniques with a passion for innovation in drug discovery and development. He completed his M.Pharm from ISF College of Pharmacy."
+    },
+    {
+      "name": "Aniket Nandi",
+      "expertise": "Pharmaceutical Analysis",
+      "image": "/assets/Aniket.png",
+      "batch": "2023-2025",
+      "description" : "Aniket Nandi has completed his Masters in pharmaceutical analysis and has research experience in biosensors, microfluidics, and computer-aided drug design. His work focuses on biomarker detection using advanced diagnostic platforms such as quantum dots and lateral flow assays, along with computational approaches for drug discovery and understanding disease mechanisms."
+    },
+    {
+      "name": "Mukesh Kumar",
+      "expertise": "Pharmaceutical Analysis",
+      "image": "",
+      "batch": "2023-2025"
+    },
+    {
+      "name": "Archana Kumari",
+      "expertise": "Pharmacognosy",
+      "image": "/assets/Archana.png",
+      "batch": "2023-2025",
+      "description": "Miss. Archana kumari Master of Pharmacy in Pharmacognosy dept. from ISF college of pharmacy, Moga, Punjab. In Masters, did research on Targeting Renal Calcium-Sensing Receptor with Plant-Derived Phytoconstituents for the Prevention of Urolithiasis: In Vitro based Experimental Validation and currently working as an assistant professor in Himalaya College of Pharmacy, Patna Bihar."
+    }
+  ],
+  "currentMembers": [
+    {
+      "name": "Atanu Saha",
+      "expertise": "Pharmaceutical Analysis",
+      "image": "",
+      "batch": "current"
+    },
+    {
+      "name": "Ganesh Pd Sahu",
+      "expertise": "Pharmaceutical Analysis",
+      "image": "/assets/Ganesh web.png",
+      "batch": "current"
+    },
+    {
+      "name": "Swagnik Chakroborty",
+      "expertise": "Pharmaceutical Analysis",
+      "image": "/assets/Swagnik web.png",
+      "batch": "current"
+    },
+    {
+      "name": "Shivam Nag",
+      "expertise": "Pharmaceutical Chemistry",
+      "image": "/assets/Shivam web.png",
+      "batch": "current"
+    },
+    {
+      "name": "Mohit Sharma",
+      "expertise": "Pharmaceutical Chemistry",
+      "image": "/assets/Mohit.png",
+      "batch": "current"
+    },
+    {
+      "name": "Mangaldip Ghosh",
+      "expertise": "Pharmaceutical Chemistry",
+      "image": "/assets/Mangaldip Ghosh.png",
+      "batch": "current"
+    }
+  ]
+}

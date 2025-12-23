@@ -5,15 +5,10 @@ import {
   GraduationCap,
   Users,
   Search,
+  ArrowLeft,
+  Briefcase
 } from "lucide-react";
-
-interface TeamMember {
-  name: string;
-  expertise: string;
-  image: string;
-  batch: string;
-  researchArea?: string;
-}
+import type { TeamData, TeamMember } from "../types/team";
 
 const TeamMembers = () => {
   const [selectedBatch, setSelectedBatch] = useState("current");
@@ -21,228 +16,174 @@ const TeamMembers = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+  const [teamData, setTeamData] = useState<TeamData | null>(null);
+  
+  // NEW: State for viewing a specific member's details
+  const [selectedMember, setSelectedMember] = useState<TeamMember | null>(null);
+
+  useEffect(() => {
+    fetch("/data/teamData.json")
+      .then((res) => res.json())
+      .then((data: TeamData) => setTeamData(data))
+      .catch(console.error);
+  }, []);
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
+  useEffect(() => {
+    if (selectedMember) window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [selectedMember]);
+
+
   const handleImageError = (memberName: string) => {
-    setFailedImages(prev => new Set(prev).add(memberName));
+    setFailedImages((prev) => new Set(prev).add(memberName));
   };
 
-  const team: TeamMember[] = [
-    {
-      name: "Arshdeep Singh",
-      researchArea: "Anti-Inflammatory Agents",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Arshdeep.png",
-      batch: "2022-2024"
-    },
-    {
-      name: "Anjali Sharma",
-      researchArea: "Anti-Alzheimer Agents",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/anjali-sharma.jpg",
-      batch: "2022-2024"
-    },
-    {
-      name: "Deepak Bisht",
-      researchArea: "Anti-Inflammatory Agents",
-      expertise: "Pharmaceutical Chemistry",
-      image: "",
-      batch: "2022-2024"
-    },
-    {
-      name: "Aniket Saini",
-      researchArea: "Curcumin Loaded Carbon Dots",
-      expertise: "Pharmaceutical Analysis",
-      image: "",
-      batch: "2022-2024"
-    },
-    {
-      name: "Rabin Debnath",
-      researchArea: "Anti-Breast cancer Agents",
-      expertise: "Pharmaceutical Chemistry",
-      image: "",
-      batch: "2022-2024"
-    },
-    {
-      name: "Kushal Seni",
-      researchArea: "Aceclofenac Loaded Carbon Dots",
-      expertise: "Pharmaceutical Analysis",
-      image: "",
-      batch: "2022-2024"
-    }
-  ];
+  const allMembers: TeamMember[] = teamData
+    ? [...teamData.currentMembers, ...teamData.newMembers]
+    : [];
 
-  const newMembers: TeamMember[] = [
-    {
-      name: "Divyanshi",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Divyanshi.png",
-      batch: "2023-2025"
-    },
-    {
-      name: "Yash Kumar Gaur",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Yash.png",
-      batch: "2023-2025"
-    },
-    {
-      name: "Aniket Nandi",
-      expertise: "Pharmaceutical Analysis",
-      image: "/assets/Aniket.png",
-      batch: "2023-2025"
-    },
-    {
-      name: "Ashish Kumar",
-      expertise: "Pharmacognosy",
-      image: "",
-      batch: "2023-2025"
-    },
-    // {
-    //   name: "Shreya Kumari",
-    //   expertise: "Pharmaceutical Chemistry",
-    //   image: "",
-    //   batch: "2023-2025"
-    // },
-    {
-      name: "Mukesh Kumar",
-      expertise: "Pharmaceutical Analysis",
-      image: "",
-      batch: "2023-2025"
-    },
-    {
-      name: "Archana Kumari",
-      expertise: "Pharmacognosy",
-      image: "/assets/Archana.png",
-      batch: "2023-2025"
-    }
-  ];
-
-  const currentMembers: TeamMember[] = [
-    {
-      name: "Atanu Saha",
-      expertise: "Pharmaceutical Analysis",
-      image: "",
-      batch: "current"
-    },
-    {
-      name: "Ganesh Pd Sahu",
-      expertise: "Pharmaceutical Analysis",
-      image: "/assets/Ganesh web.png",
-      batch: "current"
-    },
-    {
-      name: "Swagnik Chakroborty",
-      expertise: "Pharmaceutical Analysis",
-      image: "/assets/Swagnik web.png",
-      batch: "current"
-    },
-    {
-      name: "Shivam Nag",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Shivam web.png",
-      batch: "current"
-    },
-    {
-      name: "Mohit Sharma",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Mohit.png",
-      batch: "current"
-    },
-    {
-      name: "Mangaldip Ghosh",
-      expertise: "Pharmaceutical Chemistry",
-      image: "/assets/Mangaldip Ghosh.png",
-      batch: "current"
-    }
-  ];
-
-  // Combine all members
-  const allMembers = [...team, ...newMembers, ...currentMembers];
-
-  // Define categories based on expertise
   const categories = [
     { id: "all", label: "All", icon: Users },
     { id: "Pharmaceutical Chemistry", label: "Chemistry", icon: BookOpen },
     { id: "Pharmaceutical Analysis", label: "Analysis", icon: Award },
-    { id: "Pharmacognosy", label: "Pharmacognosy", icon: GraduationCap }
+    { id: "Pharmacognosy", label: "Pharmacognosy", icon: GraduationCap },
   ];
+
+  if (!teamData) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
 
   const filteredMembers = allMembers.filter((member) => {
     const matchesBatch = member.batch === selectedBatch;
-    const matchesCategory =
-      selectedCategory === "all" || member.expertise === selectedCategory;
+    const matchesCategory = selectedCategory === "all" || member.expertise === selectedCategory;
     const matchesSearch =
       member.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      member.expertise.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (member.researchArea?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
+      (member.expertise?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
     return matchesBatch && matchesCategory && matchesSearch;
   });
 
-  // Component to render profile image or fallback
-  const MemberImage = ({ member }: { member: TeamMember }) => {
-    const shouldShowFallback = !member.image || failedImages.has(member.name);
+  // --- SUB-COMPONENTS ---
 
-    if (shouldShowFallback) {
+  const MemberImage = ({ member, className }: { member: TeamMember; className?: string }) => {
+    const isFailed = !member.image || failedImages.has(member.name);
+    if (isFailed) {
       return (
-        <div className="w-full h-full flex items-center justify-center">
-          <div className="text-center">
-            <div className="w-24 h-24 bg-white rounded-full mx-auto mb-3 flex items-center justify-center shadow-lg">
-              <svg className="w-12 h-12 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
-                <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-              </svg>
-            </div>
-            <p className="text-purple-600 font-bold text-lg">{member.name}</p>
+        <div className={`flex items-center justify-center bg-gradient-to-br from-indigo-50 to-purple-50 ${className}`}>
+          <div className="text-center p-4">
+            <Users className="w-12 h-12 text-purple-200 mx-auto mb-2" />
+            <p className="text-purple-400 font-bold text-xs uppercase tracking-widest">{member.name.split(' ')[0]}</p>
           </div>
         </div>
       );
     }
-
     return (
       <img
         src={member.image}
         alt={member.name}
-        className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+        className={`object-cover object-top ${className}`}
         onError={() => handleImageError(member.name)}
       />
     );
   };
 
+  // --- RENDER DETAIL VIEW ---
+  if (selectedMember) {
+    return (
+      <div className="min-h-screen bg-white pt-32 pb-20 px-6">
+        <div className="max-w-5xl mx-auto">
+          <button 
+            onClick={() => setSelectedMember(null)}
+            className="flex items-center gap-2 text-gray-500 hover:text-purple-600 transition-colors mb-8 font-semibold"
+          >
+            <ArrowLeft size={20} /> Back to Team
+          </button>
+
+          <div className="flex flex-col md:flex-row gap-12 items-start">
+            <div className="w-full md:w-1/3 aspect-[3/4] rounded-3xl overflow-hidden shadow-2xl">
+              <MemberImage member={selectedMember} className="w-full h-full" />
+            </div>
+
+            <div className="w-full md:w-2/3 space-y-6">
+              <div>
+                <span className="px-4 py-1 bg-purple-100 text-purple-700 rounded-full text-sm font-bold uppercase tracking-widest">
+                  Batch {selectedMember.batch}
+                </span>
+                <h1 className="text-4xl md:text-5xl font-black text-gray-900 mt-4">{selectedMember.name}</h1>
+                {selectedMember.currentRole && (
+                  <p className="text-xl text-indigo-600 font-bold mt-2 flex items-center gap-2">
+                    <Briefcase size={22} /> {selectedMember.currentRole}
+                  </p>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                  <p className="text-gray-400 text-xs font-bold uppercase mb-1">Expertise</p>
+                  <p className="text-gray-900 font-semibold">{selectedMember.expertise}</p>
+                </div>
+                {selectedMember.researchArea && (
+                  <div className="p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                    <p className="text-gray-400 text-xs font-bold uppercase mb-1">Research Area</p>
+                    <p className="text-gray-900 font-semibold">{selectedMember.researchArea}</p>
+                  </div>
+                )}
+              </div>
+
+              <div className="prose prose-purple">
+                <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                  <BookOpen size={20} className="text-purple-600" /> Biography
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-lg italic">
+                  {selectedMember.description || "Research profile information is currently being updated for this member."}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // --- RENDER GRID VIEW ---
   return (
     <div className="min-h-screen bg-white">
-      {/* Hero Section with Animated Background */}
-      <section className="relative pt-32 pb-24 px-6 overflow-hidden">
-        {/* Animated Background Elements */}
+      {/* Hero Section */}
+      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
+        {/* Background blobs */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute -bottom-40 left-1/2 w-96 h-96 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-500"></div>
+          <div className="absolute -top-40 -right-40 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-40 -left-40 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl animate-pulse delay-500" />
         </div>
 
-        {/* Header Content */}
         <div className="max-w-7xl mx-auto text-center relative">
-          <div className={`transition-all duration-1000 transform ${
-            isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
-          }`}>
-            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl mb-8 group hover:scale-110 transition-transform duration-300">
+          <div
+            className={`transition-all duration-1000 transform ${
+              isVisible ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
+            }`}
+          >
+            {/* Icon */}
+            <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl mb-8 shadow-lg">
               <Users className="w-8 h-8 text-white" />
             </div>
-            
+
+            {/* Heading */}
             <h1 className="text-5xl md:text-7xl font-black mb-6">
               <span className="bg-gradient-to-r from-gray-900 via-purple-800 to-indigo-800 bg-clip-text text-transparent">
-                Meet Our Team
+                Our Research Team
               </span>
             </h1>
-            
-            <div className="h-1 w-48 mx-auto bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full mb-8"></div>
-            
+
+            {/* Divider */}
+            <div className="h-1 w-40 mx-auto bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full mb-8" />
+
+            {/* Description */}
             <p className="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              A diverse group of passionate researchers pushing the boundaries of chemistry and pharmaceutical sciences
+              Meet the students and researchers contributing to innovative work in
+              pharmaceutical chemistry, analysis, and allied sciences.
             </p>
 
-            {/* Search Bar */}
+            {/* Search */}
             <div className="max-w-2xl mx-auto mt-12 relative">
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
               <input
@@ -257,114 +198,79 @@ const TeamMembers = () => {
         </div>
       </section>
 
-      {/* Batch Selector */}
-      <section className="px-6 pb-8">
-        <div className="max-w-7xl mx-auto flex justify-center gap-4 flex-wrap">
-          {["current", "2023-2025", "2022-2024"].map((batch) => (
-            <button
-              key={batch}
-              onClick={() => setSelectedBatch(batch)}
-              className={`px-8 py-3 rounded-2xl font-bold transition-all duration-300 transform hover:scale-105 ${
-                selectedBatch === batch
-                  ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-                  : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:shadow-md"
-              }`}
-            >
-              {batch === "current"
-                ? "Current Members"
-                : `Batch of ${batch}`}
-            </button>
-          ))}
-        </div>
-      </section>
-
-      {/* Category Filter */}
-      <section className="px-6 pb-16">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-center gap-3">
-          {categories.map((category) => {
-            const Icon = category.icon;
-            return (
+      {/* Filters */}
+      <div className="sticky top-20 z-30 bg-white/80 backdrop-blur-md py-4 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+          <div className="flex bg-gray-100 p-1 rounded-xl">
+            {["current", "2023-2025", "2022-2024"].map((b) => (
               <button
-                key={category.id}
-                onClick={() => setSelectedCategory(category.id)}
-                className={`px-6 py-3 rounded-2xl font-bold transition-all duration-300 flex items-center gap-2 transform hover:scale-105 ${
-                  selectedCategory === category.id
-                    ? "bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg"
-                    : "bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:shadow-md"
+                key={b}
+                onClick={() => setSelectedBatch(b)}
+                className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${
+                  selectedBatch === b ? "bg-white text-purple-600 shadow-sm" : "text-gray-500 hover:text-gray-700"
                 }`}
               >
-                <Icon size={18} />
-                {category.label}
+                {b === "current" ? "Current" : b}
               </button>
-            );
-          })}
-        </div>
-      </section>
+            ))}
+          </div>
 
-      {/* Team Grid */}
-      <section className="px-6 pb-24">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredMembers.length > 0 ? (
-            filteredMembers.map((member, index) => (
-              <div
-                key={index}
-                className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:border-gray-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm"
+          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
+            {categories.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+                  selectedCategory === cat.id 
+                    ? "bg-purple-600 border-purple-600 text-white" 
+                    : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                }`}
               >
-                <div className="relative h-96 overflow-hidden bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100">
-                  <MemberImage member={member} />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors duration-300">
-                    {member.name}
-                  </h3>
-                  
-                  {member.researchArea && (
-                    <div className="flex items-start gap-2 mb-3 text-sm text-gray-600">
-                      <div className="p-1.5 bg-gray-100 rounded-lg group-hover:bg-purple-50 transition-colors duration-300">
-                        <BookOpen
-                          size={14}
-                          className="flex-shrink-0 text-purple-600"
-                        />
-                      </div>
-                      <span className="leading-relaxed">{member.researchArea}</span>
-                    </div>
-                  )}
+                {cat.label}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
 
-                  <div className="flex items-center gap-2 mb-4 text-sm text-gray-600">
-                    <div className="p-1.5 bg-gray-100 rounded-lg group-hover:bg-indigo-50 transition-colors duration-300">
-                      <GraduationCap
-                        size={14}
-                        className="flex-shrink-0 text-indigo-600"
-                      />
-                    </div>
-                    <span>{member.expertise}</span>
-                  </div>
-
-                  <div className="flex flex-wrap gap-2">
-                    <span className="px-4 py-1.5 bg-gray-100 text-gray-700 text-xs font-bold rounded-full group-hover:bg-purple-50 group-hover:text-purple-700 transition-colors duration-300">
-                      {member.batch === "current" ? "Current" : member.batch}
-                    </span>
-                  </div>
+      {/* Grid */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredMembers.map((member, i) => (
+            <div
+              key={i}
+              onClick={() => setSelectedMember(member)}
+              className="group cursor-pointer bg-white rounded-[2rem] border border-gray-100 overflow-hidden hover:shadow-2xl hover:shadow-purple-500/10 transition-all duration-500"
+            >
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <MemberImage member={member} className="w-full h-full transition-transform duration-700 group-hover:scale-105" />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
+                  <p className="text-white font-bold flex items-center gap-2">
+                    View Profile <ChevronRight size={18} />
+                  </p>
                 </div>
               </div>
-            ))
-          ) : (
-            <div className="text-center py-16 col-span-full">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gray-100 rounded-2xl mb-6">
-                <Users className="w-10 h-10 text-gray-400" />
+              <div className="p-6">
+                <h3 className="text-xl font-bold text-gray-900 group-hover:text-purple-600 transition-colors">{member.name}</h3>
+                <p className="text-sm text-gray-500 font-medium mt-1">{member.expertise}</p>
+                {member.researchArea && (
+                  <div className="mt-4 flex items-center gap-2 text-xs text-gray-400">
+                    <BookOpen size={14} />
+                    <span className="truncate">{member.researchArea}</span>
+                  </div>
+                )}
               </div>
-              <h3 className="text-3xl font-bold text-gray-900 mb-3">
-                No team members found
-              </h3>
-              <p className="text-lg text-gray-600">
-                Try adjusting your search or filter criteria
-              </p>
             </div>
-          )}
+          ))}
         </div>
       </section>
     </div>
   );
 };
+
+// Simple Chevron for the hover effect
+const ChevronRight = ({ size }: { size: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+);
 
 export default TeamMembers;
