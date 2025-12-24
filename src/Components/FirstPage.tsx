@@ -32,7 +32,7 @@ const FirstPage = () => {
         // Wait for the animation to finish (800ms) before navigating
         setTimeout(() => {
             navigate("/home");
-        }, 1200);
+        }, 1500);
     };
 
     const AnimatedLetter = ({ char, baseDelay }: { char: string; baseDelay: number }) => {
