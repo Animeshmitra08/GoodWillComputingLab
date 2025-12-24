@@ -1,148 +1,19 @@
 import { useEffect, useState } from "react";
 import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
 import professor from "../assets/KC Sir web.png";
-import video from "../assets/AdobeStock_65619016.mov";
-import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [hoveredWord, setHoveredWord] = useState<string | null>(null);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     setIsVisible(true);
   }, []);
 
-  const handleMouseMove = (e: { currentTarget: { getBoundingClientRect: () => any; }; clientX: number; clientY: number; }) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
-    });
-  };
-
-  // Split text into words for individual animations
-  const welcomeTitle = "Welcome to the";
-  const researchGroup = "KC Research Group";
+  
 
   return (
     <div className="min-h-screen bg-white">
-      {/* Welcome Section with Enhanced Interactivity */}
-      <div 
-        className="relative h-screen 2xl:h-[calc(100vh-35rem)] flex items-center justify-center overflow-hidden"
-        onMouseMove={handleMouseMove}
-      >
-        {/* Background Video */}
-        <video
-          autoPlay
-          loop
-          muted
-          playsInline
-          className="absolute top-0 left-0 w-full h-full object-cover z-0"
-        >
-          <source src={video} type="video/mp4" />
-        </video>
-
-        {/* Enhanced Dark Overlay with Gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/60 to-black/70 z-0"></div>
-
-        {/* Animated Glow Effect Following Mouse */}
-        <div
-          className="absolute w-96 h-96 bg-gradient-to-r from-purple-600/30 to-indigo-600/20 rounded-full blur-3xl z-1 pointer-events-none opacity-0 transition-opacity duration-300"
-          style={{
-            left: `${mousePosition.x}px`,
-            top: `${mousePosition.y}px`,
-            transform: "translate(-50%, -50%)",
-          }}
-        ></div>
-
-        {/* Foreground Text with Interactive Elements */}
-        <div className="relative z-10 mb-20 px-6 w-full text-left max-w-7xl">
-        {/* Welcome Text */}
-        <div className="space-y-2">
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-tight tracking-tight">
-            {/* "Welcome to the" - Per Letter Hover */}
-            <div className="flex flex-wrap gap-x-4 mb-2">
-                {welcomeTitle.split(" ").map((word, wIdx) => (
-                <div key={`word-${wIdx}`} className="flex">
-                    {word.split("").map((char, cIdx) => {
-                    const globalIdx = `w1-${wIdx}-${cIdx}`;
-                    return (
-                        <span
-                        key={globalIdx}
-                        className="relative inline-block cursor-default transition-all duration-200 hover:-translate-y-1"
-                        onMouseEnter={() => setHoveredWord(globalIdx)}
-                        onMouseLeave={() => setHoveredWord(null)}
-                        style={{
-                            color: hoveredWord === globalIdx ? "#ec4899" : "#ffffff",
-                            textShadow: hoveredWord === globalIdx
-                            ? "0 0 15px rgba(236, 72, 153, 0.8)"
-                            : "0 2px 8px rgba(0, 0, 0, 0.3)",
-                        }}
-                        >
-                        {char}
-                        </span>
-                    );
-                    })}
-                </div>
-                ))}
-            </div>
-
-            {/* "KC Research Group" - Per Letter Hover */}
-            <div className="flex flex-wrap gap-x-4">
-                {researchGroup.split(" ").map((word, wIdx) => (
-                <div key={`group-${wIdx}`} className="flex">
-                    {word.split("").map((char, cIdx) => {
-                    const globalIdx = `w2-${wIdx}-${cIdx}`;
-                    return (
-                        <span
-                        key={globalIdx}
-                        className="relative inline-block cursor-default transition-all duration-200 hover:-translate-y-1"
-                        onMouseEnter={() => setHoveredWord(globalIdx)}
-                        onMouseLeave={() => setHoveredWord(null)}
-                        style={{
-                            color: hoveredWord === globalIdx ? "#a855f7" : "#ffffff",
-                            textShadow: hoveredWord === globalIdx
-                            ? "0 0 15px rgba(168, 85, 247, 0.8)"
-                            : "0 2px 8px rgba(0, 0, 0, 0.3)",
-                        }}
-                        >
-                        {char}
-                        </span>
-                    );
-                    })}
-                </div>
-                ))}
-            </div>
-
-            {/* Left-aligned Animated underline */}
-            <div className="relative mt-6">
-                <div className="h-1.5 w-32 bg-gradient-to-r from-purple-400 to-transparent rounded-full opacity-60 animate-pulse"></div>
-            </div>
-            </h1>
-        </div>
-
-        {/* CTA Button - Left Aligned */}
-        <div className={`mt-10 transition-all duration-1000 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-        }`}>
-            <button 
-            onClick={() => { navigate("/publications"); }}
-            className="group px-8 py-3 bg-gradient-to-r from-purple-600 to-indigo-600 rounded-full text-white font-bold text-lg hover:from-purple-500 hover:to-indigo-500 transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-purple-500/50 border border-purple-400/30 cursor-pointer">
-            <span className="flex items-center gap-2 text-sm md:text-lg">
-                Explore Our Work
-                <span className="group-hover:translate-x-1 transition-transform duration-300">→</span>
-            </span>
-            </button>
-        </div>
-        </div>
-
-        {/* Floating Elements */}
-        <div className="absolute top-10 left-10 w-20 h-20 bg-purple-500/10 rounded-full blur-2xl animate-float z-1"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-indigo-500/10 rounded-full blur-3xl animate-float delay-700 z-1"></div>
-      </div>
+      
 
       {/* Professor Section */}
       <section className="relative pt-32 pb-32 px-6 overflow-hidden bg-gradient-to-b from-white via-purple-50/30 to-white">

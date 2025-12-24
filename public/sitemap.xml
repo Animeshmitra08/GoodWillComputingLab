@@ -7,6 +7,9 @@
     <loc>https://www.kcresearchgroup.com/</loc>
   </url>
   <url>
+    <loc>https://www.kcresearchgroup.com/home</loc>
+  </url>
+  <url>
     <loc>https://www.kcresearchgroup.com/group/team-members</loc>
   </url>
   <url>
@@ -14,5 +17,11 @@
   </url>
   <url>
     <loc>https://www.kcresearchgroup.com/publications</loc>
+  </url>
+  <url>
+    <loc>https://www.kcresearchgroup.com/researches</loc>
+  </url>
+  <url>
+    <loc>https://www.kcresearchgroup.com/achievements</loc>
   </url>
 </urlset>

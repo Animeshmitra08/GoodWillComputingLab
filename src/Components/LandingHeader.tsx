@@ -25,30 +25,23 @@ const LandingHeader: React.FC = () => {
   };
 
   const isActive = (path: string) => location.pathname === path;
-  
-  // Check if we're on landing page
-  const isLandingPage = location.pathname === "/";
 
   return (
     <>
-      <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-700 ease-out ${
-        isScrolled 
-          ? 'bg-white/95 backdrop-blur-xl border-b border-gray-200/50 shadow-lg shadow-gray-900/10' 
-          : 'bg-transparent backdrop-blur-none border-b border-transparent shadow-none'
-      }`}>
+      <header 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out bg-white/95 backdrop-blur-xl border-b border-gray-200/50 ${
+          isScrolled ? 'shadow-lg shadow-gray-900/10' : 'shadow-none'
+        }`}
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className={`flex justify-between items-center transition-all duration-700 ease-out ${
+          <div className={`flex justify-between items-center transition-all duration-500 ease-out ${
             isScrolled ? 'h-16' : 'h-20'
           }`}>
             {/* Logo */}
             <div className="flex-shrink-0 group">
-              <h1 className={`text-2xl font-black bg-gradient-to-r transition-all duration-500 cursor-pointer ${
+              <h1 className={`font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent transition-all duration-500 cursor-pointer hover:scale-105 ${
                 isScrolled ? 'text-2xl' : 'text-3xl'
-              } ${
-                !isScrolled && isLandingPage
-                  ? 'from-white via-purple-200 to-pink-200 drop-shadow-[0_2px_8px_rgba(255,255,255,0.5)]'
-                  : 'from-indigo-600 via-purple-600 to-pink-600'
-              } bg-clip-text text-transparent hover:scale-105`}>
+              }`}>
                 KC RG
               </h1>
             </div>
@@ -56,29 +49,22 @@ const LandingHeader: React.FC = () => {
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-1">
               <Link 
-                to="/" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ease-out ${
-                  isActive("/")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50 font-semibold"
-                      : "text-white bg-white/20 font-semibold"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
+                to="/home" 
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
+                  isActive("/home")
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
                 }`}
               >
                 Home
               </Link>
 
-              <div className="relative group">
-                <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+              {/* Group Dropdown */}
+              <div className="relative group bg-transparent">
+                <button className={`flex items-center px-4 py-2 font-medium rounded-full transition-all duration-300 ${
                   location.pathname.startsWith("/group")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50 font-semibold"
-                      : "text-white bg-white/20 font-semibold"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
                 }`}>
                   Group 
                   <ChevronDown 
@@ -87,7 +73,7 @@ const LandingHeader: React.FC = () => {
                   />
                 </button>
                 <div className="absolute left-0 mt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transform group-hover:translate-y-0 translate-y-2 transition-all duration-300 ease-out">
-                  <div className="bg-white/95 backdrop-blur-xl shadow-2xl rounded-2xl border border-gray-200/50 w-48 p-2 shadow-gray-900/10">
+                  <div className="bg-white shadow-2xl rounded-2xl border border-gray-200/50 w-48 p-2 shadow-gray-900/10">
                     <Link
                       to="/group/team-members"
                       className={`block px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
@@ -100,7 +86,11 @@ const LandingHeader: React.FC = () => {
                     </Link>
                     <Link
                       to="/group/collaborators"
-                      className="block px-4 py-3 text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 rounded-xl transition-all duration-200 font-medium"
+                      className={`block px-4 py-3 rounded-xl transition-all duration-200 font-medium ${
+                        isActive("/group/collaborators")
+                          ? "text-indigo-600 bg-indigo-50"
+                          : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                      }`}
                     >
                       Collaborators
                     </Link>
@@ -110,53 +100,37 @@ const LandingHeader: React.FC = () => {
               
               <Link 
                 to="/researches" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
                   isActive("/researches")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50 font-semibold"
-                      : "text-white bg-white/20 font-semibold"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
                 }`}
               >
                 Researches
               </Link>
               <Link 
                 to="/publications" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
                   isActive("/publications")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50 font-semibold"
-                      : "text-white bg-white/20 font-semibold"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
                 }`}
               >
                 Publications
               </Link>
               <Link 
                 to="/achievements" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
                   isActive("/achievements")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50 font-semibold"
-                      : "text-white bg-white/20 font-semibold"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
                 }`}
               >
                 Achievements
               </Link>
               <Link 
                 to="#" 
-                className={`px-4 py-2 font-medium rounded-full transition-all duration-500 ${
-                  isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
-                }`}
+                className="px-4 py-2 font-medium rounded-full text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
               >
                 Current Engagements
               </Link>
@@ -166,11 +140,7 @@ const LandingHeader: React.FC = () => {
             <div className="md:hidden">
               <button
                 onClick={toggleMenu}
-                className={`p-3 rounded-2xl transition-all duration-500 active:scale-95 ${
-                  isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white hover:text-white hover:bg-white/20"
-                }`}
+                className="p-3 rounded-2xl text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300 active:scale-95"
               >
                 <div className="relative w-6 h-6">
                   <Menu 
@@ -188,81 +158,47 @@ const LandingHeader: React.FC = () => {
         </div>
 
         {/* Mobile Nav */}
-        <div className={`md:hidden overflow-hidden transition-all duration-100 ease-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0 duration-300'}`}>
-          <nav className={`border-t px-6 py-4 space-y-1 transition-all duration-500 ${
-            isScrolled || !isLandingPage
-              ? 'bg-white/95 backdrop-blur-xl border-gray-200/50' 
-              : 'bg-black/40 backdrop-blur-xl border-white/20'
-          }`}>
+        <div className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}>
+          <nav className="bg-white border-t border-gray-200/50 px-6 py-4 space-y-1">
             <Link 
-              to="/" 
+              to="/home" 
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isActive("/")
-                  ? isScrolled || !isLandingPage
-                    ? "text-indigo-600 bg-indigo-50 font-semibold"
-                    : "text-white bg-white/20 font-semibold"
-                  : isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/home") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Home
             </Link>
             
-            {/* Mobile Group Dropdown */}
-            <div className="space-y-1">
-              <button
-                onClick={() => toggleDropdown("group")}
-                className={`flex items-center justify-between w-full px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                  location.pathname.startsWith("/group")
-                    ? isScrolled || !isLandingPage
-                      ? "text-indigo-600 bg-indigo-50"
-                      : "text-white bg-white/20"
-                    : isScrolled || !isLandingPage
-                      ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                      : "text-white/90 hover:text-white hover:bg-white/20"
-                }`}
-              >
-                Group 
-                <ChevronDown 
-                  size={16} 
-                  className={`transition-transform duration-300 ${openDropdown === 'group' ? 'rotate-180' : ''}`} 
-                />
-              </button>
-              <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'group' ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
-                <div className="ml-4 space-y-1 pt-1">
-                  <Link 
-                    to="/group/team-members" 
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                      isActive("/group/team-members")
-                        ? isScrolled || !isLandingPage
-                          ? "text-indigo-600 bg-indigo-50"
-                          : "text-white bg-white/20"
-                        : isScrolled || !isLandingPage
-                          ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                          : "text-white/90 hover:text-white hover:bg-white/20"
-                    }`}
-                  >
-                    Team Members
-                  </Link>
-                  <Link 
-                    to="/group/collaborators" 
-                    onClick={() => setIsOpen(false)}
-                    className={`block px-4 py-2 rounded-lg transition-all duration-200 ${
-                      isActive("/group/collaborators")
-                        ? isScrolled || !isLandingPage
-                          ? "text-indigo-600 bg-indigo-50"
-                          : "text-white bg-white/20"
-                        : isScrolled || !isLandingPage
-                          ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                          : "text-white/90 hover:text-white hover:bg-white/20"
-                    }`}
-                  >
-                    Collaborators
-                  </Link>
-                </div>
+            <button
+              onClick={() => toggleDropdown("group")}
+              className={`flex items-center justify-between w-full px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+                location.pathname.startsWith("/group") ? "text-indigo-600 bg-indigo-50" : "text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              Group 
+              <ChevronDown 
+                size={16} 
+                className={`transition-transform duration-300 ${openDropdown === 'group' ? 'rotate-180' : ''}`} 
+              />
+            </button>
+            
+            <div className={`overflow-hidden transition-all duration-300 ${openDropdown === 'group' ? 'max-h-32 opacity-100' : 'max-h-0 opacity-0'}`}>
+              <div className="ml-4 space-y-1 pt-1">
+                <Link 
+                  to="/group/team-members" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 rounded-lg text-sm ${isActive("/group/team-members") ? "text-indigo-600 bg-indigo-50" : "text-gray-600 hover:bg-gray-50"}`}
+                >
+                  Team Members
+                </Link>
+                <Link 
+                  to="/group/collaborators" 
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-4 py-2 rounded-lg text-sm ${isActive("/group/collaborators") ? "text-indigo-600 bg-indigo-50" : "text-gray-600 hover:bg-gray-50"}`}
+                >
+                  Collaborators
+                </Link>
               </div>
             </div>
             
@@ -270,13 +206,7 @@ const LandingHeader: React.FC = () => {
               to="/researches" 
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isActive("/researches")
-                  ? isScrolled || !isLandingPage
-                    ? "text-indigo-600 bg-indigo-50 font-semibold"
-                    : "text-white bg-white/20 font-semibold"
-                  : isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/researches") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Researches
@@ -285,13 +215,7 @@ const LandingHeader: React.FC = () => {
               to="/publications" 
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isActive("/publications")
-                  ? isScrolled || !isLandingPage
-                    ? "text-indigo-600 bg-indigo-50 font-semibold"
-                    : "text-white bg-white/20 font-semibold"
-                  : isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/publications") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Publications
@@ -300,28 +224,10 @@ const LandingHeader: React.FC = () => {
               to="/achievements" 
               onClick={() => setIsOpen(false)}
               className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isActive("/achievements")
-                  ? isScrolled || !isLandingPage
-                    ? "text-indigo-600 bg-indigo-50 font-semibold"
-                    : "text-white bg-white/20 font-semibold"
-                  : isScrolled || !isLandingPage
-                    ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                    : "text-white/90 hover:text-white hover:bg-white/20"
+                isActive("/achievements") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
               }`}
             >
               Achievements
-            </Link>
-
-            <Link 
-              to="#" 
-              onClick={() => setIsOpen(false)}
-              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
-                isScrolled || !isLandingPage
-                  ? "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
-                  : "text-white/90 hover:text-white hover:bg-white/20"
-              }`}
-            >
-              Current Engagements
             </Link>
           </nav>
         </div>
