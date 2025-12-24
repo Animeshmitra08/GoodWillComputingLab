@@ -73,18 +73,17 @@ const FirstPage = () => {
             {/* 1. DECORATED LOADING SCREEN */}
             <div className={`absolute inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfc] transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] ${isLoaded ? '-translate-y-full' : 'translate-y-0'} `}>
                 {/* ... (loader content remains the same) ... */}
-                <div className="relative z-10 flex flex-col items-center max-w-2xl px-6">
+                <div className="relative z-10 flex flex-col items-center max-w-3xl px-6">
                     <div className="mb-8 font-mono text-5xl md:text-7xl font-black text-gray-100 tabular-nums">
                         {loadingProgress}%
                     </div>
-                    <div className="w-64 md:w-96 h-[3px] bg-gray-100 overflow-hidden relative rounded-full mb-10">
+                    <div className="w-64 md:w-96 h-[3px] bg-gray-100 overflow-hidden relative rounded-full mb-6">
                         <div 
                             className="absolute h-full bg-gradient-to-r from-indigo-600 via-indigo-500 to-purple-600 transition-all duration-200"
                             style={{ width: `${loadingProgress}%` }}
                         />
                     </div>
                     <div className="text-center space-y-3">
-                        <p className="font-mono text-[10px] tracking-[0.5em] text-indigo-500 font-bold uppercase mb-4 animate-fadeIn">Statement of Purpose</p>
                         <h3 className="text-gray-800 text-sm md:text-base font-medium leading-relaxed tracking-wide">
                             <span className="opacity-80">"A platform dedicated to chemistry </span>
                             <span className="italic text-indigo-600">in service of life and advancement </span>
