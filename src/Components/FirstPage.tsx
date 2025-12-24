@@ -62,11 +62,11 @@ const FirstPage = () => {
             >
                 {/* Exit Text: KCRG */}
                 <div className={`transition-all duration-700 delay-300 ${isExiting ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                    <h2 className="text-black font-sans text-4xl md:text-6xl font-bold tracking-[0.5em] ml-[0.5em]">
-                        KCRG
+                    <h2 className="font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-sans text-4xl md:text-6xl font-bold ml-[0.5em]">
+                        KC RG
                     </h2>
                     {/* Animated underline for the exit text */}
-                    <div className={`h-[2px] bg-indigo-500 mx-auto transition-all duration-1000 delay-500 ${isExiting ? 'w-full' : 'w-0'}`} />
+                    <div className={`h-[2px] bg-indigo-500 mx-auto transition-all duration-1000 delay-500 mt-6 ${isExiting ? 'w-full' : 'w-0'}`} />
                 </div>
             </div>
             
