@@ -142,9 +142,15 @@ const LandingPage: React.FC = () => {
               <button className="px-10 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl text-white font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95">
                 Learn More
               </button>
-              <button className="px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95">
+              {/* <button className="px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95">
                 Contact Us
-              </button>
+              </button> */}
+              <a
+                href="mailto:sharmakcpt@gmail.com?subject=Contact%20Request&body=Hi%20Team,"
+                className="inline-block px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95"
+              >
+                Contact Us
+              </a>
             </div>
           </div>
         </div>

@@ -1,14 +1,14 @@
 import React from "react";
-import { SiGithub, SiLinkedin } from "react-icons/si";
+import { SiLinkedin } from "react-icons/si";
 import { MdMailOutline } from "react-icons/md";
-import { FaTwitter } from "react-icons/fa6";
+// import { FaTwitter } from "react-icons/fa6";
 
 const Footer: React.FC = () => {
   const icons = [
-    { Icon: SiGithub, link: "https://github.com/" },
-    { Icon: FaTwitter, link: "https://twitter.com/" },
-    { Icon: SiLinkedin, link: "https://linkedin.com/" },
-    { Icon: MdMailOutline, link: "mailto:contact@kcsresearch.org" },
+    // { Icon: SiGithub, link: "https://github.com/" },
+    // { Icon: FaTwitter, link: "https://twitter.com/" },
+    { Icon: SiLinkedin, link: "https://www.linkedin.com/in/dr-kalicharan-sharma-11424147/" },
+    { Icon: MdMailOutline, link: "mailto:sharmakcpt@gmail.com" },
   ];
 
   return (
