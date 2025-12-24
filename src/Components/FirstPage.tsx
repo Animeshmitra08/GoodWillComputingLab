@@ -32,7 +32,7 @@ const FirstPage = () => {
         // Wait for the animation to finish (800ms) before navigating
         setTimeout(() => {
             navigate("/home");
-        }, 800);
+        }, 1200);
     };
 
     const AnimatedLetter = ({ char, baseDelay }: { char: string; baseDelay: number }) => {
@@ -54,12 +54,21 @@ const FirstPage = () => {
     return (
         <div className="relative h-screen w-full bg-[#0a0a0a] font-sans overflow-hidden">
             
-            {/* EXIT OVERLAY: Slides from left to right */}
+            {/* EXIT OVERLAY */}
             <div 
-                className={`fixed inset-0 z-[200] bg-indigo-600 transition-transform duration-[800ms] ease-[cubic-bezier(0.7,0,0.3,1)] ${
-                    isExiting ? 'translate-x-0' : '-translate-x-full'
-                }`}
-            />
+                className={`fixed inset-0 z-[200] transition-transform duration-[800ms] ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center
+                ${isExiting ? '-translate-y-0' : 'translate-y-full'} 
+                bg-white`} // You can change this color to bg-indigo-900 etc.
+            >
+                {/* Exit Text: KCRG */}
+                <div className={`transition-all duration-700 delay-300 ${isExiting ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                    <h2 className="text-black font-sans text-4xl md:text-6xl font-bold tracking-[0.5em] ml-[0.5em]">
+                        KCRG
+                    </h2>
+                    {/* Animated underline for the exit text */}
+                    <div className={`h-[2px] bg-indigo-500 mx-auto transition-all duration-1000 delay-500 ${isExiting ? 'w-full' : 'w-0'}`} />
+                </div>
+            </div>
             
             {/* 1. DECORATED LOADING SCREEN */}
             <div className={`absolute inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfc] transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] ${isLoaded ? '-translate-y-full' : 'translate-y-0'} `}>
