@@ -70,7 +70,7 @@ const FirstPage = () => {
             <div className="relative h-full w-full flex items-center justify-center">
                 {/* High Visibility Background Video */}
                 <div className={`absolute inset-0 z-0 transition-opacity duration-1000 ${startAnimation ? 'opacity-80' : 'opacity-0'}`}>
-                    <video autoPlay loop muted playsInline className="h-full w-full object-cover">
+                    <video autoPlay loop muted playsInline aria-hidden="true" className="h-full w-full object-cover">
                         <source src={video} type="video/mp4" />
                     </video>
                     {/* Subtle Dark Overlay to keep text readable */}
