@@ -6,7 +6,8 @@ import {
   Users,
   Search,
   ArrowLeft,
-  Briefcase
+  Briefcase,
+  // Icon
 } from "lucide-react";
 import type { TeamData, TeamMember } from "../types/team";
 
@@ -47,9 +48,9 @@ const TeamMembers = () => {
 
   const categories = [
     { id: "all", label: "All", icon: Users },
-    { id: "Pharmaceutical Chemistry", label: "Chemistry", icon: BookOpen },
-    { id: "Pharmaceutical Analysis", label: "Analysis", icon: Award },
-    { id: "Pharmacognosy", label: "Pharmacognosy", icon: GraduationCap },
+    { id: "Master's in Pharmaceutical Chemistry", label: "Chemistry", icon: BookOpen },
+    { id: "Master's in Pharmaceutical Analysis", label: "Analysis", icon: Award },
+    { id: "Master's in Pharmacognosy", label: "Pharmacognosy", icon: GraduationCap },
   ];
 
   if (!teamData) return <div className="min-h-screen flex items-center justify-center">Loading...</div>;
@@ -216,19 +217,22 @@ const TeamMembers = () => {
           </div>
 
           <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
-                  selectedCategory === cat.id 
-                    ? "bg-purple-600 border-purple-600 text-white" 
-                    : "border-gray-200 text-gray-600 hover:bg-gray-50"
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+            {categories.map((cat) => {
+              const Icon = cat.icon;
+              return (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-bold border transition-all ${
+                    selectedCategory === cat.id 
+                      ? "bg-purple-600 border-purple-600 text-white" 
+                      : "border-gray-200 text-gray-600 hover:bg-gray-50"
+                  }`}
+                >
+                  <Icon size={16} className="inline-block mr-2 mb-0.5" />
+                  {cat.label}
+                </button>
+            )})}
           </div>
         </div>
       </div>
