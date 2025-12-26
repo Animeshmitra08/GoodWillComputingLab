@@ -8,6 +8,7 @@ import CollaboratorsNetwork from "./Components/Collaborators";
 import Research from "./Components/Research";
 import Achievements from "./Components/Achievements";
 import MainLayout from "./MainLayout";
+import NotFound from "./Components/NotFound";
 
 function App() {
   return (
@@ -29,7 +30,7 @@ function App() {
         <Route path="/achievements" element={<Achievements />} />
       </Route>
 
-      <Route path="*" element={<h1>404 Not Found</h1>} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }
