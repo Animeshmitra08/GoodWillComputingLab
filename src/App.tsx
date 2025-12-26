@@ -9,6 +9,7 @@ import Research from "./Components/Research";
 import Achievements from "./Components/Achievements";
 import MainLayout from "./MainLayout";
 import NotFound from "./Components/NotFound";
+import ContactUs from "./Components/ContactUs";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
 
         <Route path="/researches" element={<Research />} />
         <Route path="/achievements" element={<Achievements />} />
+        <Route path="/contact" element={<ContactUs />} />
       </Route>
 
       <Route path="*" element={<NotFound />} />

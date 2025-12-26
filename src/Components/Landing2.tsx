@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
 import professor from "../assets/KC Sir web.png";
+import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -9,7 +10,11 @@ const LandingPage: React.FC = () => {
     setIsVisible(true);
   }, []);
 
-  
+  const navigate = useNavigate();
+
+  const handleButtonClick = () => {
+    navigate("/contact");
+  };
 
   return (
     <div className="min-h-screen bg-white">
@@ -142,15 +147,17 @@ const LandingPage: React.FC = () => {
               <button className="px-10 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-2xl text-white font-bold text-lg hover:from-indigo-700 hover:to-purple-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl active:scale-95">
                 Learn More
               </button>
-              {/* <button className="px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95">
+              <button 
+              onClick={() => handleButtonClick()}
+              className="px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95">
                 Contact Us
-              </button> */}
-              <a
+              </button>
+              {/* <a
                 href="mailto:sharmakcpt@gmail.com?subject=Contact%20Request&body=Hi%20Team,"
                 className="inline-block px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95"
               >
                 Contact Us
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
