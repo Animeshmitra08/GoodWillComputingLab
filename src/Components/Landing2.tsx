@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Activity, Cpu, FlaskConical, Star, TestTube } from "lucide-react";
+import { Activity, Cpu, FlaskConical, TestTube } from "lucide-react";
 import professor from "../assets/KC Sir web.png";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 const LandingPage: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -10,11 +10,11 @@ const LandingPage: React.FC = () => {
     setIsVisible(true);
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleButtonClick = () => {
-    navigate("/contact");
-  };
+  // const handleButtonClick = () => {
+  //   navigate("/contact");
+  // };
 
   return (
     <div className="min-h-screen bg-white">
