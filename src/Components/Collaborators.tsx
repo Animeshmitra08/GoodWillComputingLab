@@ -271,7 +271,7 @@ const Collaborators = () => {
                           className="w-full px-4 py-3 rounded-xl text-xs font-bold text-center bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center gap-2"
                         >
                           <Mail size={14} />
-                          Email Expert
+                          Email
                         </a>
                       ) : (
                         <a
