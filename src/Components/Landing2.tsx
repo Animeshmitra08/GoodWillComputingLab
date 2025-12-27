@@ -127,7 +127,7 @@ const LandingPage: React.FC = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA Section
       <section className="py-24 px-6 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-4xl mx-auto text-center">
           <div className="bg-gradient-to-br from-purple-600/10 to-indigo-600/10 rounded-3xl border border-gray-200 p-12 md:p-16 shadow-lg hover:shadow-2xl transition-shadow duration-300 backdrop-blur-sm">
@@ -157,11 +157,11 @@ const LandingPage: React.FC = () => {
                 className="inline-block px-10 py-4 bg-white border-2 border-gray-300 rounded-2xl text-gray-700 font-bold text-lg hover:bg-gray-50 hover:border-purple-400 hover:text-purple-700 transition-all duration-300 active:scale-95"
               >
                 Contact Us
-              </a> */}
+              </a> 
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Custom Animations */}
       <style>{`

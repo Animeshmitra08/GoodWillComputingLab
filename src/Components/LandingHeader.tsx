@@ -128,11 +128,19 @@ const LandingHeader: React.FC = () => {
               >
                 Achievements
               </Link>
+
               <Link 
                 to="#" 
                 className="px-4 py-2 font-medium rounded-full text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
               >
                 Current Engagements
+              </Link>
+
+              <Link 
+                to="/contact" 
+                className="px-4 py-2 font-medium rounded-full text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
+              >
+                Contact Us
               </Link>
             </nav>
 
@@ -228,6 +236,26 @@ const LandingHeader: React.FC = () => {
               }`}
             >
               Achievements
+            </Link>
+
+            <Link 
+              to="#" 
+              // onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+                isActive("#") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              Current Engagements
+            </Link>
+
+            <Link 
+              to="/contact" 
+              onClick={() => setIsOpen(false)}
+              className={`block px-4 py-3 font-medium rounded-xl transition-all duration-200 ${
+                isActive("/contact") ? "text-indigo-600 bg-indigo-50 font-semibold" : "text-gray-700 hover:bg-gray-50"
+              }`}
+            >
+              Contact Us
             </Link>
           </nav>
         </div>
