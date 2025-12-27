@@ -29,7 +29,7 @@ const Footer: React.FC = () => {
       }}
     >
       {/* Dark Overlay for Readability */}
-      <div className="absolute inset-0 bg-gray-900/90 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-gray-900/60 backdrop-blur-sm"></div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-6 pt-16 pb-8">
         {/* Main 3-Column Section */}
