@@ -138,7 +138,11 @@ const LandingHeader: React.FC = () => {
 
               <Link 
                 to="/contact" 
-                className="px-4 py-2 font-medium rounded-full text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 transition-all duration-300"
+                className={`px-4 py-2 font-medium rounded-full transition-all duration-300 ${
+                  isActive("/contact")
+                    ? "text-indigo-600 bg-indigo-50 font-semibold"
+                    : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50"
+                }`}
               >
                 Contact Us
               </Link>

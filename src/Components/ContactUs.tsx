@@ -11,6 +11,7 @@ import {
   X,
   Linkedin,
 } from "lucide-react";
+import emailjs from "@emailjs/browser";
 
 const inputStyles =
   "w-full px-4 mt-2 py-3 bg-gray-50 border border-gray-200 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-transparent outline-none transition-all duration-200 placeholder:text-gray-400 text-gray-900";
@@ -20,6 +21,13 @@ const ContactUs = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [formData, setFormData] = useState({
+    from_name: "",
+    from_email: "",
+    inquiry_type: "General Inquiry",
+    message: "",
+  });
+
 
   const [alert, setAlert] = useState<{ show: boolean; message: string }>({
     show: false,
@@ -30,20 +38,61 @@ const ContactUs = () => {
     setIsVisible(true);
   }, []);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const now = new Date();
+
+  const formattedDateTime = now.toLocaleString("en-IN", {
+    dateStyle: "medium",
+    timeStyle: "short",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((r) => setTimeout(r, 2000));
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          title: "KC RG Support",
+          from_name: formData.from_name,
+          from_email: formData.from_email,
+          time: formattedDateTime,
+          inquiry_type: formData.inquiry_type,
+          message: formData.message,
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
 
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    setAlert({
-      show: true,
-      message: "Inquiry received! We will contact you soon.",
-    });
+      setIsSubmitted(true);
+      setAlert({
+        show: true,
+        message: "Inquiry received! We will contact you soon.",
+      });
 
-    setTimeout(() => setAlert({ show: false, message: "" }), 4000);
+      setFormData({
+        from_name: "",
+        from_email: "",
+        inquiry_type: "General Inquiry",
+        message: "",
+      });
+    } catch (error) {
+      console.error(error);
+      setAlert({
+        show: true,
+        message: "Failed to send message. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+      setTimeout(() => setAlert({ show: false, message: "" }), 4000);
+    }
   };
 
   const handleReset = () => {
@@ -164,7 +213,7 @@ const ContactUs = () => {
                 Join our professional community and stay updated.
               </p>
               <a
-                href="#"
+                href="https://www.linkedin.com/in/dr-kalicharan-sharma-11424147/"
                 className="inline-flex items-center gap-2 px-5 py-2.5 bg-white/10 hover:bg-white/20 rounded-xl text-sm font-semibold"
               >
                 <Linkedin size={18} className="text-blue-400" />
@@ -216,10 +265,12 @@ const ContactUs = () => {
                             Full Name
                         </label>
                         <input
-                            id="fullName"
-                            required
-                            placeholder="John Doe"
-                            className={inputStyles}
+                          name="from_name"
+                          value={formData.from_name}
+                          onChange={handleChange}
+                          required
+                          placeholder="John Doe"
+                          className={inputStyles}
                         />
                         </div>
 
@@ -231,11 +282,13 @@ const ContactUs = () => {
                             Email Address
                         </label>
                         <input
-                            id="email"
-                            type="email"
-                            required
-                            placeholder="john@example.com"
-                            className={inputStyles}
+                          name="from_email"
+                          type="email"
+                          value={formData.from_email}
+                          onChange={handleChange}
+                          required
+                          placeholder="john@example.com"
+                          className={inputStyles}
                         />
                         </div>
                     </div>
@@ -249,13 +302,15 @@ const ContactUs = () => {
                         Inquiry Type
                         </label>
                         <select
-                        id="inquiryType"
-                        className={inputStyles}
+                          name="inquiry_type"
+                          value={formData.inquiry_type}
+                          onChange={handleChange}
+                          className={inputStyles}
                         >
-                        <option>General Inquiry</option>
-                        <option>Research Collaboration</option>
-                        <option>Publications</option>
-                        <option>Student Opportunities</option>
+                          <option>General Inquiry</option>
+                          <option>Research Collaboration</option>
+                          <option>Publications</option>
+                          <option>Student Opportunities</option>
                         </select>
                     </div>
 
@@ -268,11 +323,13 @@ const ContactUs = () => {
                         Your Message
                         </label>
                         <textarea
-                        id="message"
-                        rows={4}
-                        required
-                        placeholder="How can we help you?"
-                        className={`${inputStyles} resize-none`}
+                          name="message"
+                          rows={4}
+                          value={formData.message}
+                          onChange={handleChange}
+                          required
+                          placeholder="How can we help you?"
+                          className={`${inputStyles} resize-none`}
                         />
                     </div>
 
