@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import video from "../assets/AdobeStock_65619016.mov";
 import { useNavigate } from 'react-router-dom';
+import WindowsLoader from './WindowsLoader';
 
 const FirstPage = () => {
     const [loadingProgress, setLoadingProgress] = useState(0);
@@ -11,20 +12,20 @@ const FirstPage = () => {
 
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setLoadingProgress((prev) => {
-                if (prev >= 100) {
-                    clearInterval(interval);
-                    setTimeout(() => setIsLoaded(true), 500);
-                    setTimeout(() => setStartAnimation(true), 800);
-                    return 100;
-                }
-                return prev + 1;
-            });
-        }, 25);
-        return () => clearInterval(interval);
-    }, []);
+    // useEffect(() => {
+    //     const interval = setInterval(() => {
+    //         setLoadingProgress((prev) => {
+    //             if (prev >= 100) {
+    //                 clearInterval(interval);
+    //                 setTimeout(() => setIsLoaded(true), 500);
+    //                 setTimeout(() => setStartAnimation(true), 800);
+    //                 return 100;
+    //             }
+    //             return prev + 1;
+    //         });
+    //     }, 25);
+    //     return () => clearInterval(interval);
+    // }, []);
 
     // Handle the exit sequence
     const handleExplore = () => {
@@ -111,9 +112,9 @@ const FirstPage = () => {
                 </div>
             </div>
             
-            {/* 1. DECORATED LOADING SCREEN */}
+            {/* 1. DECORATED LOADING SCREEN
             <div className={`absolute inset-0 z-[100] flex flex-col items-center justify-center bg-[#fcfcfc] transition-transform duration-1000 ease-[cubic-bezier(0.85,0,0.15,1)] ${isLoaded ? '-translate-y-full' : 'translate-y-0'} `}>
-                {/* ... (loader content remains the same) ... */}
+                {/* ... (loader content remains the same) ... 
                 <div className="relative z-10 flex flex-col items-center max-w-3xl px-6">
                     <div className="mb-8 font-mono text-5xl md:text-7xl font-black text-gray-100 tabular-nums">
                         {loadingProgress}%
@@ -132,7 +133,10 @@ const FirstPage = () => {
                         </h3>
                     </div>
                 </div>
-            </div>
+            </div> */}
+
+            <WindowsLoader isLoaded={isLoaded} loadingProgress={loadingProgress}/>
+
             
             {/* 2. MAIN CONTENT */}
             <div className={`relative h-full w-full flex items-center justify-center transition-transform duration-1000 ${isExiting ? '-translate-x-10 opacity-0' : 'translate-x-0'}`}>
