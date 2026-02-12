@@ -8,105 +8,75 @@ import {
 } from "lucide-react";
 
 // Updated Data with your provided collaborators
-const collaboratorsData: { academic: Collaborator[]; industrial: Collaborator[] } = {
-  academic: [
-    {
-      name: "Prof. (Dr) Mymoona Akhter",
-      designation: "Professor and Director",
-      email: "mymoonaakhter@gmail.com",
-      academic_qualification: "M. Pharm (Pharmaceutical Chemistry), PhD",
-      institution: "Jamia Hamdard",
-      image: "", // Add image URL if available
-      type: "academic"
-    },
-    {
-      name: "Prof. (Dr) Ramesh K. Goyal",
-      designation: "Honorable ex Vice-Chancellor & Professor",
-      email: "goyalrk@gmail.com",
-      academic_qualification: "B.Sc. (Hon.), M.Sc. (Medical), Ph.D. (Pharmacy)",
-      institution: "DPSRU",
-      image: "",
-      type: "academic"
-    },
-    {
-      name: "Prof. (Dr) Ajay Sharma",
-      designation: "Officiating Director, SPS & Director IQAC",
-      email: "asharma@dpsru.edu.in",
-      academic_qualification: "M. Pharm, PhD, Post-Doctorate",
-      institution: "DPSRU",
-      image: "",
-      type: "academic"
-    },
-    {
-      name: "Dr. Arya Lakshmi Marisetti",
-      designation: "Assistant Professor",
-      email: "maryalakshmi@dpsru.edu.in",
-      academic_qualification: "Ph.D.",
-      institution: "DPSRU",
-      image: "",
-      type: "academic"
-    },
-    {
-      name: "Dr. Anoop Kumar",
-      designation: "Assistant Professor",
-      email: "anoopdpsru@dpsru.edu.in",
-      academic_qualification: "M.Pharm, PhD (Pharmacy)",
-      institution: "DPSRU",
-      image: "",
-      type: "academic"
-    },
-    {
-      name: "Dr. Omprakash Tanwar",
-      designation: "Assistant Professor, Dept. of Pharmacy",
-      email: "otanwar@sgstis.ac.in",
-      academic_qualification: "PhD",
-      institution: "SGSITS, Indore",
-      image: "",
-      type: "academic"
-    }
-  ],
-  industrial: [
-    {
-      name: "REMEDIUM THERAPEUTICS",
-      company: "Remedium Therapeutics Inc.",
-      website: "https://remediumtherapeutics.com/",
-      type: "industrial"
-    },
-    {
-      name: "VGENOMICS",
-      company: "VGENOMICS",
-      website: "https://vgenomics.in/",
-      type: "industrial"
-    }
-  ]
-};
+// Academic collaborators only
+const collaboratorsData: Collaborator[] = [
+  {
+    name: "Prof. (Dr) Mymoona Akhter",
+    designation: "Professor and Director",
+    email: "mymoonaakhter@gmail.com",
+    academic_qualification: "M. Pharm (Pharmaceutical Chemistry), PhD",
+    institution: "Jamia Hamdard",
+    image: "",
+  },
+  {
+    name: "Prof. (Dr) Ramesh K. Goyal",
+    designation: "Honorable ex Vice-Chancellor & Professor",
+    email: "goyalrk@gmail.com",
+    academic_qualification: "B.Sc. (Hon.), M.Sc. (Medical), Ph.D. (Pharmacy)",
+    institution: "DPSRU",
+    image: "",
+  },
+  {
+    name: "Prof. (Dr) Ajay Sharma",
+    designation: "Officiating Director, SPS & Director IQAC",
+    email: "asharma@dpsru.edu.in",
+    academic_qualification: "M. Pharm, PhD, Post-Doctorate",
+    institution: "DPSRU",
+    image: "",
+  },
+  {
+    name: "Dr. Arya Lakshmi Marisetti",
+    designation: "Assistant Professor",
+    email: "maryalakshmi@dpsru.edu.in",
+    academic_qualification: "Ph.D.",
+    institution: "DPSRU",
+    image: "",
+  },
+  {
+    name: "Dr. Anoop Kumar",
+    designation: "Assistant Professor",
+    email: "anoopdpsru@dpsru.edu.in",
+    academic_qualification: "M.Pharm, PhD (Pharmacy)",
+    institution: "DPSRU",
+    image: "",
+  },
+  {
+    name: "Dr. Omprakash Tanwar",
+    designation: "Assistant Professor, Dept. of Pharmacy",
+    email: "otanwar@sgstis.ac.in",
+    academic_qualification: "PhD",
+    institution: "SGSITS, Indore",
+    image: "",
+  }
+];
 
 interface Collaborator {
   name: string;
-  designation?: string;
-  email?: string;
-  website?: string;
-  academic_qualification?: string;
-  industry_qualification?: string;
-  image?: string;
-  institution?: string;
-  company?: string;
-  type: "academic" | "industrial";
+  designation: string;
+  email: string;
+  academic_qualification: string;
+  image: string;
+  institution: string;
 }
 
 const Collaborators = () => {
   const [allCollaborators, setAllCollaborators] = useState<Collaborator[]>([]);
-  const [selectedType, setSelectedType] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
 
   useEffect(() => {
-    const combined: Collaborator[] = [
-      ...collaboratorsData.academic,
-      ...collaboratorsData.industrial
-    ];
-    setAllCollaborators(combined);
+    setAllCollaborators(collaboratorsData);
   }, []);
 
   useEffect(() => {
@@ -118,13 +88,11 @@ const Collaborators = () => {
   };
 
   const filteredCollaborators = allCollaborators.filter((collab) => {
-    const matchesType = selectedType === "all" || collab.type === selectedType;
     const matchesSearch =
       collab.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      (collab.designation?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
-      (collab.institution?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false) ||
-      (collab.company?.toLowerCase().includes(searchQuery.toLowerCase()) ?? false);
-    return matchesType && matchesSearch;
+      collab.designation.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      collab.institution.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesSearch;
   });
 
   const CollaboratorImage = ({ collaborator }: { collaborator: Collaborator }) => {
@@ -139,7 +107,7 @@ const Collaborators = () => {
             </div>
             <p className="text-indigo-900 font-bold text-xl leading-tight px-4">{collaborator.name}</p>
             <p className="text-indigo-500 text-sm mt-2 font-medium">
-                {collaborator.institution || collaborator.company}
+              {collaborator.institution}
             </p>
           </div>
         </div>
@@ -196,99 +164,55 @@ const Collaborators = () => {
         </div>
       </section>
 
-      <section className="px-6 pb-8">
-        <div className="max-w-7xl mx-auto flex justify-center gap-4 flex-wrap">
-          {["all", "academic", "industrial"].map((type) => (
-            <button
-              key={type}
-              onClick={() => setSelectedType(type)}
-              className={`px-8 py-3 rounded-2xl font-bold transition-all duration-300 ${
-                selectedType === type
-                  ? "bg-gradient-to-r from-indigo-600 to-cyan-600 text-white shadow-lg"
-                  : "bg-white text-gray-700 border border-gray-200 hover:border-indigo-300"
-              }`}
-            >
-              {type === "all" ? "All Experts" : type.charAt(0).toUpperCase() + type.slice(1)}
-            </button>
-          ))}
-        </div>
-      </section>
-
       <section className="px-6 pb-24">
         <div className="max-w-7xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredCollaborators.length > 0 ? (
-            filteredCollaborators.map((collaborator, index) => {
-              const isAcademic = collaborator.type === "academic";
+            filteredCollaborators.map((collaborator, index) => (
+              <div
+                key={index}
+                className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:border-indigo-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm flex flex-col"
+              >
+                {/* Top Visual Section */}
+                <div className="relative h-64 overflow-hidden bg-gradient-to-br from-indigo-50 to-blue-50">
+                  <CollaboratorImage collaborator={collaborator} />
+                </div>
 
-              return (
-                <div
-                  key={index}
-                  className="group bg-white rounded-3xl border border-gray-200 overflow-hidden hover:border-indigo-300 transition-all duration-500 hover:shadow-xl transform hover:-translate-y-2 shadow-sm flex flex-col"
-                >
-                  {/* Top Visual Section */}
-                  <div className={`relative ${isAcademic ? 'h-64' : 'h-48'} overflow-hidden bg-gradient-to-br ${isAcademic ? 'from-indigo-50 to-blue-50' : 'from-cyan-50 to-emerald-50'}`}>
-                    <CollaboratorImage collaborator={collaborator} />
+                {/* Content Section */}
+                <div className="p-6 flex flex-col flex-grow">
+                  <div className="mb-auto">
+                    <h3 className="text-xl font-bold text-gray-900 mb-1 transition-colors duration-300 group-hover:text-indigo-700">
+                      {collaborator.name}
+                    </h3>
+                    
+                    <p className="text-sm font-semibold mb-4 text-indigo-600">
+                      {collaborator.institution}
+                    </p>
+                    
+                    <div className="space-y-3 mb-6">
+                      <div className="flex items-start gap-3 text-sm text-gray-600">
+                        <Briefcase size={16} className="text-indigo-500 mt-0.5 shrink-0" />
+                        <span className="line-clamp-2">{collaborator.designation}</span>
+                      </div>
+                      <div className="flex items-start gap-3 text-sm text-gray-600">
+                        <GraduationCap size={16} className="text-cyan-500 mt-0.5 shrink-0" />
+                        <span className="line-clamp-2">{collaborator.academic_qualification}</span>
+                      </div>
+                    </div>
                   </div>
 
-                  {/* Content Section */}
-                  <div className="p-6 flex flex-col flex-grow">
-                    <div className="mb-auto">
-                      <h3 className={`text-xl font-bold text-gray-900 mb-1 transition-colors duration-300 ${isAcademic ? 'group-hover:text-indigo-700' : 'group-hover:text-cyan-700'}`}>
-                        {collaborator.name}
-                      </h3>
-                      
-                      <p className={`text-sm font-semibold mb-4 ${isAcademic ? 'text-indigo-600' : 'text-cyan-600'}`}>
-                        {isAcademic ? collaborator.institution : "Industrial Partner"}
-                      </p>
-                      
-                      {/* Detailed Info for Academic only */}
-                      {isAcademic ? (
-                        <div className="space-y-3 mb-6">
-                          <div className="flex items-start gap-3 text-sm text-gray-600">
-                            <Briefcase size={16} className="text-indigo-500 mt-0.5 shrink-0" />
-                            <span className="line-clamp-2">{collaborator.designation}</span>
-                          </div>
-                          <div className="flex items-start gap-3 text-sm text-gray-600">
-                            <GraduationCap size={16} className="text-cyan-500 mt-0.5 shrink-0" />
-                            <span className="line-clamp-2">{collaborator.academic_qualification}</span>
-                          </div>
-                        </div>
-                      ) : (
-                        /* Minimalist view for Industrial */
-                        <div className="mb-6">
-                          <p className="text-sm text-gray-500 italic">
-                            Strategic collaboration in pharmaceutical innovation and research development.
-                          </p>
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Action Button */}
-                    <div className="pt-4 border-t border-gray-100">
-                      {isAcademic ? (
-                        <a
-                          href={`mailto:${collaborator.email}`}
-                          className="w-full px-4 py-3 rounded-xl text-xs font-bold text-center bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center gap-2"
-                        >
-                          <Mail size={14} />
-                          Email
-                        </a>
-                      ) : (
-                        <a
-                          href={collaborator.website}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full px-4 py-3 rounded-xl text-xs font-bold text-center bg-cyan-600 text-white hover:bg-cyan-700 hover:shadow-lg transition-all flex items-center justify-center gap-2"
-                        >
-                          <Search size={14} />
-                          Visit Company Website
-                        </a>
-                      )}
-                    </div>
+                  {/* Action Button */}
+                  <div className="pt-4 border-t border-gray-100">
+                    <a
+                      href={`mailto:${collaborator.email}`}
+                      className="w-full px-4 py-3 rounded-xl text-xs font-bold text-center bg-indigo-50 text-indigo-700 hover:bg-indigo-600 hover:text-white transition-all flex items-center justify-center gap-2"
+                    >
+                      <Mail size={14} />
+                      Email
+                    </a>
                   </div>
                 </div>
-              );
-            })
+              </div>
+            ))
           ) : (
             <div className="text-center py-16 col-span-full">
               <Users className="w-16 h-16 text-gray-300 mx-auto mb-4" />
