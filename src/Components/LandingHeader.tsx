@@ -38,13 +38,48 @@ const LandingHeader: React.FC = () => {
             isScrolled ? 'h-16' : 'h-20'
           }`}>
             {/* Logo */}
-            <div className="flex-shrink-0 group">
-              <h1 className={`font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent transition-all duration-500 cursor-pointer hover:scale-105 ${
-                isScrolled ? 'text-2xl' : 'text-3xl'
-              }`}>
-                KC RG
-              </h1>
-            </div>
+            <Link
+              to="/home"
+              className="flex items-center gap-3 flex-shrink-0 group relative"
+            >
+              {/* Logo Image with subtle glow/shadow on hover */}
+              <div className="relative -mr-2">
+                <img
+                  src="/assets/kcrg_logo.png"
+                  alt="KCRG Logo"
+                  className={`object-contain transition-all duration-500 ease-out group-hover:scale-105 ${
+                    isScrolled ? "h-9" : "h-11"
+                  }`}
+                />
+                {/* Decorative blur behind logo for depth */}
+                <div className="absolute inset-0 bg-indigo-400/10 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              </div>
+
+              {/* Vertical Separator */}
+              <div 
+                className={`w-px bg-gray-200 transition-all duration-500 ${
+                  isScrolled ? "h-6" : "h-8"
+                }`} 
+              />
+
+              {/* Text Branding */}
+              <div className="flex flex-col justify-center">
+                <span
+                  className={`font-extrabold tracking-tight leading-none transition-all duration-500 ${
+                    isScrolled ? "text-xl" : "text-2xl"
+                  } bg-clip-text text-transparent bg-gradient-to-r from-gray-900 via-gray-800 to-indigo-600 group-hover:from-indigo-600 group-hover:to-blue-500`}
+                >
+                  KCRG
+                </span>
+                <span 
+                  className={`font-medium tracking-[0.2em] text-[10px] uppercase transition-all duration-500 text-gray-400 group-hover:text-indigo-400 ${
+                    isScrolled ? "opacity-0 h-0" : "opacity-100 mt-1"
+                  }`}
+                >
+                  Research Group
+                </span>
+              </div>
+            </Link>
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center space-x-1">

@@ -36,21 +36,41 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           
           {/* Column 1: Brand & Mission */}
-          <div className="flex flex-col space-y-5">
-            <div>
-              <Link to="/">
-                <h3 className="text-2xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-1">
-                  KC Research Group
-                </h3>
-              </Link>
-              <p className="text-xs font-medium text-indigo-300 tracking-widest uppercase">
-                Research • Publications
-              </p>
-            </div>
-            <p className="text-gray-300 leading-relaxed text-sm max-w-xs">
-              A collaborative environment dedicated to exploring the future of computational research and scientific discovery.
-            </p>
-          </div>
+<div className="flex flex-col space-y-5">
+  <div>
+    <Link to="/home" className="flex items-center gap-3 w-fit">
+      <img
+        src="/assets/notTransparent.png"
+        alt="KC Research Group Logo"
+        className="h-12 object-contain rounded-xl"
+      />
+      <div>
+        <h3 className="text-2xl font-black bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent leading-tight">
+          KC Research Group
+        </h3>
+        <p className="text-xs font-medium text-indigo-300 tracking-widest uppercase">
+          Research • Publications
+        </p>
+      </div>
+    </Link>
+  </div>
+
+  <div className="space-y-4">
+    <p className="text-gray-400 leading-relaxed text-sm max-w-xs font-light">
+      Empowering scientific progress through <span className="text-indigo-300 font-medium">computational intelligence</span> and collaborative academic excellence.
+    </p>
+    
+    {/* Research Tags */}
+    <div className="flex flex-wrap gap-2">
+      {['Analysis', 'Innovation', 'Discovery'].map((tag) => (
+        <span key={tag} className="text-[10px] px-2 py-1 rounded-md bg-white/5 border border-white/10 text-gray-500 uppercase tracking-widest">
+          {tag}
+        </span>
+      ))}
+    </div>
+  </div>
+</div>
+
 
           {/* Column 2: Navigation Links using Link */}
           <div className="flex flex-col space-y-4">
@@ -120,64 +140,3 @@ const Footer: React.FC = () => {
 };
 
 export default Footer;
-
-// import React from "react";
-// import { SiLinkedin } from "react-icons/si";
-// import { MdMailOutline } from "react-icons/md";
-// // import { FaTwitter } from "react-icons/fa6";
-
-// const Footer: React.FC = () => {
-//   const icons = [
-//     { Icon: SiLinkedin, link: "https://www.linkedin.com/in/dr-kalicharan-sharma-11424147/" },
-//     { Icon: MdMailOutline, link: "mailto:sharmakcpt@gmail.com" },
-//   ];
-
-//   return (
-//     <footer className="py-16 px-6 border-t border-gray-200">
-//       <div className="max-w-7xl mx-auto">
-//         <div className="flex flex-col md:flex-row justify-between items-center">
-//           {/* Left Section */}
-//           <div className="mb-8 md:mb-0 text-center md:text-left">
-//             <h3 className="text-2xl font-black bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent mb-2">
-//               KC Research Group
-//             </h3>
-//             <p className="text-gray-600">
-//               Making computing more accessible for everyone.
-//             </p>
-//           </div>
-
-//           {/* Social Icons */}
-//           <div className="flex space-x-6">
-//             {icons.map(({ Icon, link }, i) => (
-//               <a
-//                 key={i}
-//                 href={link}
-//                 target="_blank"
-//                 rel="noopener noreferrer"
-//                 className="p-3 bg-gray-100 rounded-2xl text-gray-600 hover:text-gray-900 hover:bg-gray-200 transition-all duration-300 transform hover:scale-110"
-//               >
-//                 <Icon size={22} />
-//               </a>
-//             ))}
-//           </div>
-//         </div>
-
-//         {/* Bottom Section */}
-//         <div className="mt-12 pt-8 border-t border-gray-200 text-center text-gray-500">
-//           <p>
-//             &copy; {new Date().getFullYear()} KC Research Group. All rights reserved.
-//             Advancing computing for society.
-//           </p>
-
-//           <div className="flex justify-center items-center mt-4 text-sm text-gray-400">
-//             <span className="h-px w-10 bg-gray-300 mr-3"></span>
-//             Developed by <span className="ml-1 text-gray-600 font-medium">Animesh Mitra</span>
-//             <span className="h-px w-10 bg-gray-300 ml-3"></span>
-//           </div>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// };
-
-// export default Footer;

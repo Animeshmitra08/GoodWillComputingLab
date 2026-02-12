@@ -54,19 +54,60 @@ const FirstPage = () => {
     return (
         <div className="relative h-screen w-full bg-[#0a0a0a] font-sans overflow-hidden">
             
-            {/* EXIT OVERLAY */}
+            {/* EXIT OVERLAY - Option 1: Elegant Fade */}
             <div 
-                className={`fixed inset-0 z-[200] transition-transform duration-[800ms] ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center
-                ${isExiting ? '-translate-y-0' : 'translate-y-full'} 
-                bg-white`} // You can change this color to bg-indigo-900 etc.
+                className={`fixed inset-0 z-[200] transition-all duration-[800ms] ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center
+                ${isExiting ? 'opacity-100 -translate-y-0' : 'opacity-0 translate-y-full'} 
+                bg-gradient-to-br from-indigo-50 via-white to-purple-50`}
             >
-                {/* Exit Text: KCRG */}
-                <div className={`transition-all duration-700 delay-300 ${isExiting ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                    <h2 className="font-black bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent font-sans text-4xl md:text-6xl font-bold ml-[0.5em]">
-                        KC RG
-                    </h2>
-                    {/* Animated underline for the exit text */}
-                    <div className={`h-[2px] bg-indigo-500 mx-auto transition-all duration-1000 delay-500 mt-6 ${isExiting ? 'w-full' : 'w-0'}`} />
+                {/* Add this inside the first div, before the Logo container */}
+                <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                    {/* Top Left Blob */}
+                    <div className={`absolute -top-24 -left-24 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob transition-transform duration-[2000ms] ${isExiting ? 'scale-150' : 'scale-100'}`} />
+                    
+                    {/* Bottom Right Blob */}
+                    <div className={`absolute -bottom-24 -right-24 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000 transition-transform duration-[2000ms] ${isExiting ? 'scale-150 -translate-x-10' : 'scale-100'}`} />
+                </div>
+
+                {/* Add this as the first child of your main container */}
+                <div className="absolute inset-0 opacity-[0.03]" 
+                    style={{ backgroundImage: `linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)`, 
+                            backgroundSize: '40px 40px' }}>
+                </div>
+
+                <div className="relative">
+                    {/* Animated background glow */}
+                    <div className={`absolute inset-0 blur-3xl transition-all duration-1000 delay-200 ${isExiting ? 'opacity-30 scale-150' : 'opacity-0 scale-100'}`}>
+                        <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full" />
+                    </div>
+                    
+                    {/* Logo container */}
+                    <div className={`relative transition-all duration-700 delay-300 ${isExiting ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
+                        <div className="flex flex-col items-center justify-center space-y-6">
+                            {/* Logo with subtle animation */}
+                            <div className="relative">
+                                <img
+                                    src="/assets/kcrg_logo.png"
+                                    alt="KCRG Logo"
+                                    className="w-40 h-40 object-contain drop-shadow-lg"
+                                />
+                                {/* Rotating ring around logo */}
+                                <div className={`absolute inset-0 border-2 border-indigo-300 rounded-full transition-all duration-[2000ms] ${isExiting ? 'rotate-180 opacity-0 scale-150' : 'rotate-0 opacity-100 scale-100'}`} />
+                            </div>
+                            
+                            {/* Animated underline */}
+                            <div className="w-48 h-[3px] bg-gradient-to-r from-transparent via-indigo-500 to-transparent">
+                                <div className={`h-full bg-white transition-all duration-1000 delay-500 ${isExiting ? 'w-0 ml-auto' : 'w-full'}`} />
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Add this behind the logo container */}
+                    <div className={`absolute inset-0 flex items-center justify-center select-none pointer-events-none transition-all duration-1000 delay-300 ${isExiting ? 'opacity-5 scale-110' : 'opacity-0 scale-100'}`}>
+                        <h1 className="text-[20vw] font-bold text-indigo-900 leading-none">
+                            KCRG
+                        </h1>
+                    </div>
                 </div>
             </div>
             
