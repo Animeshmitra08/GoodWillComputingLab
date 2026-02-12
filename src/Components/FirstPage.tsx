@@ -12,20 +12,20 @@ const FirstPage = () => {
 
     const navigate = useNavigate();
 
-    // useEffect(() => {
-    //     const interval = setInterval(() => {
-    //         setLoadingProgress((prev) => {
-    //             if (prev >= 100) {
-    //                 clearInterval(interval);
-    //                 setTimeout(() => setIsLoaded(true), 500);
-    //                 setTimeout(() => setStartAnimation(true), 800);
-    //                 return 100;
-    //             }
-    //             return prev + 1;
-    //         });
-    //     }, 25);
-    //     return () => clearInterval(interval);
-    // }, []);
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setLoadingProgress((prev) => {
+                if (prev >= 100) {
+                    clearInterval(interval);
+                    setTimeout(() => setIsLoaded(true), 500);
+                    setTimeout(() => setStartAnimation(true), 800);
+                    return 100;
+                }
+                return prev + 1;
+            });
+        }, 25);
+        return () => clearInterval(interval);
+    }, []);
 
     // Handle the exit sequence
     const handleExplore = () => {
