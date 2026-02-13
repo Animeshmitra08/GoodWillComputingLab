@@ -1,58 +1,126 @@
-import React from 'react';
+import React from "react";
 
 interface LoaderProps {
   isLoaded: boolean;
   loadingProgress: number;
 }
 
-const WindowsLoader: React.FC<LoaderProps> = ({ isLoaded, loadingProgress }) => {
+const WindowsLoader: React.FC<LoaderProps> = ({
+  isLoaded,
+  loadingProgress,
+}) => {
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-white/80 backdrop-blur-3xl transition-all duration-1000 ease-in-out ${
-        isLoaded ? "opacity-0 pointer-events-none scale-105" : "opacity-100"
-      }`}
+      className={`fixed inset-0 z-[200] transition-all duration-[800ms] ease-[cubic-bezier(0.7,0,0.3,1)] flex items-center justify-center
+        ${
+          isLoaded
+            ? "opacity-0 translate-y-full pointer-events-none"
+            : "opacity-100 -translate-y-0"
+        } 
+        bg-gradient-to-br from-indigo-50 via-white to-purple-50`}
     >
-      {/* --- Animated Gradient Blobs --- */}
-      <div className="absolute inset-0 overflow-hidden -z-10">
-        <div className="absolute top-[-10%] left-[-10%] w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob" />
-        <div className="absolute top-[-10%] right-[-10%] w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-2000" />
-        <div className="absolute bottom-[-10%] left-[20%] w-72 h-72 bg-pink-200 rounded-full mix-blend-multiply filter blur-3xl opacity-70 animate-blob animation-delay-4000" />
+      {/* Background blobs */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div
+          className={`absolute -top-24 -left-24 w-96 h-96 bg-indigo-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob transition-transform duration-[2000ms] ${
+            isLoaded ? "scale-100" : "scale-150"
+          }`}
+        />
+        <div
+          className={`absolute -bottom-24 -right-24 w-96 h-96 bg-purple-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob animation-delay-2000 transition-transform duration-[2000ms] ${
+            isLoaded ? "scale-100" : "scale-150 -translate-x-10"
+          }`}
+        />
       </div>
 
-      <div className="relative z-10 flex flex-col items-center">
-        {/* Logo (Removed 'invert' for dark logo on light background) */}
-        <div className="mb-6">
-          <img
-            src="/assets/notTransparent.png"
-            alt="Logo"
-            className="w-28 h-28 object-contain rounded-full"
-          />
+      {/* Subtle grid background */}
+      <div
+        className="absolute inset-0 opacity-[0.03]"
+        style={{
+          backgroundImage: `linear-gradient(#4f46e5 1px, transparent 1px), linear-gradient(90deg, #4f46e5 1px, transparent 1px)`,
+          backgroundSize: "40px 40px",
+        }}
+      />
+
+      <div className="relative">
+        {/* Glow */}
+        <div
+          className={`absolute inset-0 blur-3xl transition-all duration-1000 delay-200 ${
+            isLoaded
+              ? "opacity-0 scale-100"
+              : "opacity-30 scale-150"
+          }`}
+        >
+          <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 to-purple-400 rounded-full" />
         </div>
 
-        {/* Loader Dots (Changed bg-white to bg-blue-600) */}
-        <div className="relative w-8 h-8 mb-8">
-          {[...Array(6)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute inset-0 animate-windows"
-              style={{ animationDelay: `${i * 150}ms` }}
-            >
-              <div className="w-1.5 h-1.5 bg-blue-600 rounded-full shadow-sm" />
+        {/* Logo section */}
+        <div
+          className={`relative transition-all duration-700 delay-300 ${
+            isLoaded ? "opacity-0 scale-90" : "opacity-100 scale-100"
+          }`}
+        >
+          <div className="flex flex-col items-center justify-center mt-18">
+            <div className="relative">
+              <img
+                src="/assets/kcrg_logo.png"
+                alt="KCRG Logo"
+                className="w-40 h-40 object-contain drop-shadow-lg"
+              />
+              <div
+                className={`absolute inset-0 border-2 border-indigo-300 rounded-full transition-all duration-[2000ms] ${
+                  isLoaded
+                    ? "rotate-0 opacity-100 scale-100"
+                    : "rotate-180 opacity-0 scale-150"
+                }`}
+              />
             </div>
-          ))}
+
+            {/* Windows Startup Spinner */}
+            <div className="relative w-12 h-12">
+              {[...Array(5)].map((_, i) => (
+                <div
+                  key={i}
+                  className="absolute inset-0 animate-windows-dot"
+                  style={{
+                    // Each dot follows the same path but starts later
+                    animationDelay: `${i * 150}ms`,
+                  }}
+                >
+                  <div 
+                    className="w-1.5 h-1.5 bg-indigo-600 rounded-full" 
+                    style={{
+                      margin: '0 auto', // Centers dot at the top of the rotating container
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Loading percentage */}
+            <div
+              className={`text-sm font-medium text-indigo-700 tracking-wide transition-all duration-700 delay-700 mt-2 ${
+                isLoaded
+                  ? "opacity-0 translate-y-4"
+                  : "opacity-100 translate-y-0"
+              }`}
+            >
+              {loadingProgress}% complete
+            </div>
+          </div>
         </div>
 
-        {/* Text (Updated colors for readability) */}
-        <div className="text-center">
-          <h1 className="text-3xl font-semibold tracking-tight text-slate-800">
-            {"Welcome"}
+        {/* Background text */}
+        <div
+          className={`absolute inset-0 flex items-center justify-center select-none pointer-events-none transition-all duration-1000 delay-300 ${
+            isLoaded
+              ? "opacity-0 scale-100"
+              : "opacity-5 scale-110"
+          }`}
+        >
+          <h1 className="text-[20vw] font-bold text-indigo-900 leading-none">
+            KCRG
           </h1>
-          <p className="mt-4 text-sm font-medium text-slate-500">
-            {loadingProgress}% complete
-          </p>
-          {/* <p className="mt-1 text-xs font-normal text-slate-400">
-            Don't refresh your browser
-          </p> */}
         </div>
       </div>
     </div>

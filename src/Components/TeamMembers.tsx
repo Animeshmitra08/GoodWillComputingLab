@@ -216,7 +216,7 @@ const TeamMembers = () => {
             ))}
           </div>
 
-          <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0">
+          <div className="flex gap-2 flex-wrap justify-center items-center overflow-x-auto pb-2 md:pb-0">
             {categories.map((cat) => {
               const Icon = cat.icon;
               return (

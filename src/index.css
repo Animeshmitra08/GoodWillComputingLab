@@ -1,15 +1,43 @@
 @import 'tailwindcss';
 
+/* Add this to your globals.css or Tailwind layer */
 @keyframes windows-orbit {
-  0% { transform: rotate(225deg); opacity: 1; animation-timing-function: ease-out; }
-  7% { transform: rotate(345deg); animation-timing-function: linear; }
-  30% { transform: rotate(455deg); animation-timing-function: ease-in-out; }
-  39% { transform: rotate(570deg); animation-timing-function: linear; }
-  70% { transform: rotate(815deg); opacity: 1; animation-timing-function: ease-out; }
-  75% { transform: rotate(945deg); animation-timing-function: ease-out; }
-  76%, 100% { opacity: 0; transform: rotate(945deg); }
+  0% {
+    transform: rotate(225deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  7% {
+    transform: rotate(345deg);
+    animation-timing-function: linear;
+  }
+  30% {
+    transform: rotate(455deg);
+    animation-timing-function: ease-in-out;
+  }
+  39% {
+    transform: rotate(570deg);
+    animation-timing-function: linear;
+  }
+  70% {
+    transform: rotate(815deg);
+    opacity: 1;
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(945deg);
+    animation-timing-function: linear;
+  }
+  76% {
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(945deg);
+    opacity: 0;
+  }
 }
 
-.animate-windows {
-  animation: windows-orbit 3.5s infinite;
+.animate-windows-dot {
+  animation: windows-orbit 5.5s infinite;
+  opacity: 0;
 }
