@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import video from "../assets/AdobeStock_65619016.mov";
 import { useNavigate } from "react-router-dom";
 import WindowsLoader from "./WindowsLoader";
+import preloadAssets from "../utils/preLoader";
 
 const FirstPage = () => {
   const [loadingProgress, setLoadingProgress] = useState(0);
@@ -13,15 +14,30 @@ const FirstPage = () => {
 
   // Simulated loader
   useEffect(() => {
-    const interval = setInterval(() => {
-      setLoadingProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 25);
+    let interval: any;
+
+    const loadAll = async () => {
+      try {
+        interval = setInterval(() => {
+          setLoadingProgress((prev) => (prev < 90 ? prev + 1 : prev));
+        }, 30);
+
+        await preloadAssets(); // 🔥 loads entire assets folder automatically
+
+        clearInterval(interval);
+        setLoadingProgress(100);
+
+        setTimeout(() => {
+          setIsLoaded(true);
+          setStartAnimation(true);
+        }, 400);
+      } catch (e) {
+        console.error(e);
+        setIsLoaded(true);
+      }
+    };
+
+    loadAll();
 
     return () => clearInterval(interval);
   }, []);
