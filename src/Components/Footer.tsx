@@ -131,7 +131,14 @@ const Footer: React.FC = () => {
 
           <div className="flex items-center bg-white/5 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md">
             <span className="mr-2 italic text-gray-500">Developed by</span>
-            <span className="text-indigo-400 font-bold tracking-tight">Animesh Mitra</span>
+            <a
+              href="https://www.linkedin.com/in/animesh-mitra-ani08/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-400 font-bold tracking-tight hover:underline"
+            >
+              Animesh Mitra
+            </a>
           </div>
         </div>
       </div>
